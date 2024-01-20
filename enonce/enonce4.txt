@@ -1,0 +1,12 @@
+class Point(xc, yc: Integer) is {
+    auto x, auto y: Integer;
+
+  def Point(xc, yc: Integer) is {
+    this.x := xc; this.y := yc;
+  }
+
+{
+}
+
+
+

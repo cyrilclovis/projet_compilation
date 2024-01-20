@@ -1,0 +1,17 @@
+Voici une série de tests basés sur le fichier enonceV1.txt du prof
+
+1) J'ai coupé la version du prof en plusieurs fichiers => permet de faire des test progressifs
+2) Le fichier n+1 teste les fonctionnalités du fichier n, en plus de ces propres tests. Autrement dit, passer au test n+1 que si le test n est validé.
+3) Voici un petit détails de la nature des tests:
+
+- enonce1.txt: test d'une déclaration de classe vide Point() + bloc du programme principal
+- enonce2.txt: test avec ajout d'une liste de paramètres: Point(xc, yc: Integer)
+- enonce3.txt: test avec des déclarations qui utilisent auto dans la classe Point(xc, yc: Integer)
+- enonce4.txt: test avec ajout du constructeur Point(xc, yc: Integer)
+- enonce5.txt: test avec ajout d'une méthode def move(dx, dy: Integer, verbose: Integer)
+- enonce6.txt: test avec ajout d'un attribut statique next, d'un attribut index et de 3 méthodes statiques:   static initPoint(), static get() , static incr()
+- enonce7.txt: test avec ajout d'un attribut name (NOUVEAU TYPE: String), d'une méthode setName(newName: String) et print(verbose : Integer)
+- enonce8.txt: test avec ajout d'un attribut hasClone, d'une méthode isCloned() : Integer et d'une méthode clone(): Point => (Clone est incomplète et le sera dans la prochaine étape)
+- enonce9.txt: test avec ajout d'une attribut clone: Point, complétion de la méthode clone, ajout des méthodes allClones() et egal(p: Point) : Integer
+
+/!\ Le numéro 1 est le seul qui ne devrait pas fonctionner => car déclaration d'un bloc vide !!!

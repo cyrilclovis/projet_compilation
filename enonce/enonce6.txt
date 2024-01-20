@@ -1,0 +1,32 @@
+class Point(xc, yc: Integer) is {
+    static auto next : Integer;
+    auto x, auto y: Integer;
+    index : Integer;
+
+  def Point(xc, yc: Integer) is {
+    this.x := xc; this.y := yc;
+    this.index := Point.incr();
+  }
+
+  def static initPoint() is { next := 1; }
+
+  def static get() : Integer := next
+  
+  def static incr() : Integer is {
+    this.next := this.next + 1; result := this.next;
+  }
+
+  def move(dx, dy: Integer, verbose: Integer) : Point is {
+    this.x := this.x + dx;
+    this.y := this.y() + dy; /* usage de la methode definie automatiquement */
+    /* sans le print ici et donc sans le if
+       */
+    result := this;
+  }
+
+}
+
+
+{
+}
+

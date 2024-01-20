@@ -1,0 +1,6 @@
+class Point(xc, yc: Integer) is {
+    auto x, auto y: Integer;
+}
+
+{
+}

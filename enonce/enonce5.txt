@@ -1,0 +1,21 @@
+class Point(xc, yc: Integer) is {
+    auto x, auto y: Integer;
+
+  def Point(xc, yc: Integer) is {
+    this.x := xc; this.y := yc;
+  }
+
+  def move(dx, dy: Integer, verbose: Integer) : Point is {
+    this.x := this.x + dx;
+    this.y := this.y() + dy; /* usage de la methode definie automatiquement */
+    /* sans le print ici et donc sans le if
+       */
+    result := this;
+  }
+
+}
+
+
+{
+}
+
