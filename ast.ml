@@ -1,5 +1,4 @@
-type opComp =
-  Eq | Neq | Lt | Le | Gt | Ge
+type opComp = Eq | Neq | Lt | Le | Gt | Ge
 
 type decl = Decl of string list * string
 
@@ -54,12 +53,11 @@ type classeType =
     corps: blocDeclType;
   }
 
-type objType =
-  {
-    name: string;
-    constructor: blocType option;
-    corps: blocDeclType;
-  }
+type objType = {
+  name: string;
+  constructor: blocType option;
+  corps: blocDeclType;
+}
 
 type declBegin =
   | ClasseDecl of classeType

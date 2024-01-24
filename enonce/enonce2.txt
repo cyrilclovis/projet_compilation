@@ -1,5 +1,5 @@
 class Point(xc, yc: Integer) is {
-    x, y: Integer;
+  x, y: Integer;
 }
 
 

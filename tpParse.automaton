@@ -5,12 +5,12 @@ State 0:
 prog' -> . prog [ # ]
 ## Transitions:
 -- On OBJECTS shift to state 1
--- On CLASS shift to state 127
--- On prog shift to state 143
--- On objet shift to state 144
--- On list(declBegin) shift to state 145
--- On declBegin shift to state 148
--- On classe shift to state 150
+-- On CLASS shift to state 135
+-- On prog shift to state 142
+-- On objet shift to state 143
+-- On list(declBegin) shift to state 144
+-- On declBegin shift to state 147
+-- On classe shift to state 149
 ## Reductions:
 -- On LBRACK
 --   reduce production list(declBegin) ->
@@ -32,7 +32,7 @@ objet -> OBJECTS TYPE . option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
 ## Transitions:
 -- On LBRACK shift to state 3
 -- On option(bloc) shift to state 70
--- On bloc shift to state 126
+-- On bloc shift to state 134
 ## Reductions:
 -- On IS
 --   reduce production option(bloc) ->
@@ -1065,443 +1065,423 @@ State 71:
 objet -> OBJECTS TYPE option(bloc) IS . blocDecl [ OBJECTS LBRACK CLASS ]
 ## Transitions:
 -- On LBRACK shift to state 72
--- On blocDecl shift to state 125
+-- On blocDecl shift to state 133
 ## Reductions:
 
 State 72:
 ## Known stack suffix:
 ## LBRACK
 ## LR(1) items:
-blocDecl -> LBRACK . list(champ) list(declFonction) RBRACK [ OBJECTS LBRACK CLASS ]
+blocDecl -> LBRACK . champ list(declFonction) RBRACK [ OBJECTS LBRACK CLASS ]
 ## Transitions:
 -- On VAR shift to state 73
--- On list(champ) shift to state 83
--- On champ shift to state 123
+-- On ID shift to state 53
+-- On AUTO shift to state 83
+-- On separated_nonempty_list(COMMA,ID) shift to state 55
+-- On loption(separated_nonempty_list(COMMA,ID)) shift to state 88
+-- On champ shift to state 92
 ## Reductions:
--- On RBRACK DEF
---   reduce production list(champ) ->
+-- On COLON
+--   reduce production loption(separated_nonempty_list(COMMA,ID)) ->
 
 State 73:
 ## Known stack suffix:
 ## VAR
 ## LR(1) items:
-champ -> VAR . AUTO ID COLON TYPE SEMICOLON [ VAR RBRACK DEF ]
-champ -> VAR . ID COLON TYPE SEMICOLON [ VAR RBRACK DEF ]
+champ -> VAR . AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON [ RBRACK DEF ]
+champ -> VAR . loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On ID shift to state 74
--- On AUTO shift to state 78
+-- On ID shift to state 53
+-- On AUTO shift to state 74
+-- On separated_nonempty_list(COMMA,ID) shift to state 55
+-- On loption(separated_nonempty_list(COMMA,ID)) shift to state 79
 ## Reductions:
+-- On COLON
+--   reduce production loption(separated_nonempty_list(COMMA,ID)) ->
 
 State 74:
 ## Known stack suffix:
-## VAR ID
+## VAR AUTO
 ## LR(1) items:
-champ -> VAR ID . COLON TYPE SEMICOLON [ VAR RBRACK DEF ]
+champ -> VAR AUTO . loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On COLON shift to state 75
+-- On ID shift to state 53
+-- On separated_nonempty_list(COMMA,ID) shift to state 55
+-- On loption(separated_nonempty_list(COMMA,ID)) shift to state 75
 ## Reductions:
+-- On COLON
+--   reduce production loption(separated_nonempty_list(COMMA,ID)) ->
 
 State 75:
 ## Known stack suffix:
-## VAR ID COLON
+## VAR AUTO loption(separated_nonempty_list(COMMA,ID))
 ## LR(1) items:
-champ -> VAR ID COLON . TYPE SEMICOLON [ VAR RBRACK DEF ]
+champ -> VAR AUTO loption(separated_nonempty_list(COMMA,ID)) . COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On TYPE shift to state 76
+-- On COLON shift to state 76
 ## Reductions:
 
 State 76:
 ## Known stack suffix:
-## VAR ID COLON TYPE
+## VAR AUTO loption(separated_nonempty_list(COMMA,ID)) COLON
 ## LR(1) items:
-champ -> VAR ID COLON TYPE . SEMICOLON [ VAR RBRACK DEF ]
+champ -> VAR AUTO loption(separated_nonempty_list(COMMA,ID)) COLON . TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On SEMICOLON shift to state 77
+-- On TYPE shift to state 77
 ## Reductions:
 
 State 77:
 ## Known stack suffix:
-## VAR ID COLON TYPE SEMICOLON
+## VAR AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE
 ## LR(1) items:
-champ -> VAR ID COLON TYPE SEMICOLON . [ VAR RBRACK DEF ]
+champ -> VAR AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE . SEMICOLON [ RBRACK DEF ]
 ## Transitions:
+-- On SEMICOLON shift to state 78
 ## Reductions:
--- On VAR RBRACK DEF
---   reduce production champ -> VAR ID COLON TYPE SEMICOLON
 
 State 78:
 ## Known stack suffix:
-## VAR AUTO
+## VAR AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
 ## LR(1) items:
-champ -> VAR AUTO . ID COLON TYPE SEMICOLON [ VAR RBRACK DEF ]
+champ -> VAR AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON . [ RBRACK DEF ]
 ## Transitions:
--- On ID shift to state 79
 ## Reductions:
+-- On RBRACK DEF
+--   reduce production champ -> VAR AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
 
 State 79:
 ## Known stack suffix:
-## VAR AUTO ID
+## VAR loption(separated_nonempty_list(COMMA,ID))
 ## LR(1) items:
-champ -> VAR AUTO ID . COLON TYPE SEMICOLON [ VAR RBRACK DEF ]
+champ -> VAR loption(separated_nonempty_list(COMMA,ID)) . COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
 -- On COLON shift to state 80
 ## Reductions:
 
 State 80:
 ## Known stack suffix:
-## VAR AUTO ID COLON
+## VAR loption(separated_nonempty_list(COMMA,ID)) COLON
 ## LR(1) items:
-champ -> VAR AUTO ID COLON . TYPE SEMICOLON [ VAR RBRACK DEF ]
+champ -> VAR loption(separated_nonempty_list(COMMA,ID)) COLON . TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
 -- On TYPE shift to state 81
 ## Reductions:
 
 State 81:
 ## Known stack suffix:
-## VAR AUTO ID COLON TYPE
+## VAR loption(separated_nonempty_list(COMMA,ID)) COLON TYPE
 ## LR(1) items:
-champ -> VAR AUTO ID COLON TYPE . SEMICOLON [ VAR RBRACK DEF ]
+champ -> VAR loption(separated_nonempty_list(COMMA,ID)) COLON TYPE . SEMICOLON [ RBRACK DEF ]
 ## Transitions:
 -- On SEMICOLON shift to state 82
 ## Reductions:
 
 State 82:
 ## Known stack suffix:
-## VAR AUTO ID COLON TYPE SEMICOLON
+## VAR loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
 ## LR(1) items:
-champ -> VAR AUTO ID COLON TYPE SEMICOLON . [ VAR RBRACK DEF ]
+champ -> VAR loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON . [ RBRACK DEF ]
 ## Transitions:
 ## Reductions:
--- On VAR RBRACK DEF
---   reduce production champ -> VAR AUTO ID COLON TYPE SEMICOLON
+-- On RBRACK DEF
+--   reduce production champ -> VAR loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
 
 State 83:
 ## Known stack suffix:
-## LBRACK list(champ)
+## AUTO
 ## LR(1) items:
-blocDecl -> LBRACK list(champ) . list(declFonction) RBRACK [ OBJECTS LBRACK CLASS ]
+champ -> AUTO . loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On DEF shift to state 84
--- On list(declFonction) shift to state 119
--- On declFonction shift to state 121
+-- On ID shift to state 53
+-- On separated_nonempty_list(COMMA,ID) shift to state 55
+-- On loption(separated_nonempty_list(COMMA,ID)) shift to state 84
 ## Reductions:
--- On RBRACK
---   reduce production list(declFonction) ->
+-- On COLON
+--   reduce production loption(separated_nonempty_list(COMMA,ID)) ->
 
 State 84:
 ## Known stack suffix:
-## DEF
+## AUTO loption(separated_nonempty_list(COMMA,ID))
 ## LR(1) items:
-declFonction -> DEF . OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF . ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF . OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc [ RBRACK DEF ]
-declFonction -> DEF . ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc [ RBRACK DEF ]
-declFonction -> DEF . OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
-declFonction -> DEF . ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+champ -> AUTO loption(separated_nonempty_list(COMMA,ID)) . COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On OVERR shift to state 85
--- On ID shift to state 106
+-- On COLON shift to state 85
 ## Reductions:
 
 State 85:
 ## Known stack suffix:
-## DEF OVERR
+## AUTO loption(separated_nonempty_list(COMMA,ID)) COLON
 ## LR(1) items:
-declFonction -> DEF OVERR . ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR . ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR . ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+champ -> AUTO loption(separated_nonempty_list(COMMA,ID)) COLON . TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On ID shift to state 86
+-- On TYPE shift to state 86
 ## Reductions:
 
 State 86:
 ## Known stack suffix:
-## DEF OVERR ID
+## AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE
 ## LR(1) items:
-declFonction -> DEF OVERR ID . LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR ID . LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR ID . LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+champ -> AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE . SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On LPAREN shift to state 87
+-- On SEMICOLON shift to state 87
 ## Reductions:
 
 State 87:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN
+## AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN . loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR ID LPAREN . loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR ID LPAREN . loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+champ -> AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON . [ RBRACK DEF ]
 ## Transitions:
--- On ID shift to state 88
--- On separated_nonempty_list(COMMA,param) shift to state 91
--- On param shift to state 92
--- On loption(separated_nonempty_list(COMMA,param)) shift to state 95
 ## Reductions:
--- On RPAREN
---   reduce production loption(separated_nonempty_list(COMMA,param)) ->
+-- On RBRACK DEF
+--   reduce production champ -> AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
 
 State 88:
 ## Known stack suffix:
-## ID
+## loption(separated_nonempty_list(COMMA,ID))
 ## LR(1) items:
-param -> ID . COLON TYPE [ RPAREN COMMA ]
+champ -> loption(separated_nonempty_list(COMMA,ID)) . COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
 -- On COLON shift to state 89
 ## Reductions:
 
 State 89:
 ## Known stack suffix:
-## ID COLON
+## loption(separated_nonempty_list(COMMA,ID)) COLON
 ## LR(1) items:
-param -> ID COLON . TYPE [ RPAREN COMMA ]
+champ -> loption(separated_nonempty_list(COMMA,ID)) COLON . TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
 -- On TYPE shift to state 90
 ## Reductions:
 
 State 90:
 ## Known stack suffix:
-## ID COLON TYPE
+## loption(separated_nonempty_list(COMMA,ID)) COLON TYPE
 ## LR(1) items:
-param -> ID COLON TYPE . [ RPAREN COMMA ]
+champ -> loption(separated_nonempty_list(COMMA,ID)) COLON TYPE . SEMICOLON [ RBRACK DEF ]
 ## Transitions:
+-- On SEMICOLON shift to state 91
 ## Reductions:
--- On RPAREN COMMA
---   reduce production param -> ID COLON TYPE
 
 State 91:
 ## Known stack suffix:
-## separated_nonempty_list(COMMA,param)
+## loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
 ## LR(1) items:
-loption(separated_nonempty_list(COMMA,param)) -> separated_nonempty_list(COMMA,param) . [ RPAREN ]
+champ -> loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON . [ RBRACK DEF ]
 ## Transitions:
 ## Reductions:
--- On RPAREN
---   reduce production loption(separated_nonempty_list(COMMA,param)) -> separated_nonempty_list(COMMA,param)
+-- On RBRACK DEF
+--   reduce production champ -> loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
 
 State 92:
 ## Known stack suffix:
-## param
+## LBRACK champ
 ## LR(1) items:
-separated_nonempty_list(COMMA,param) -> param . [ RPAREN ]
-separated_nonempty_list(COMMA,param) -> param . COMMA separated_nonempty_list(COMMA,param) [ RPAREN ]
+blocDecl -> LBRACK champ . list(declFonction) RBRACK [ OBJECTS LBRACK CLASS ]
 ## Transitions:
--- On COMMA shift to state 93
+-- On DEF shift to state 93
+-- On list(declFonction) shift to state 129
+-- On declFonction shift to state 131
 ## Reductions:
--- On RPAREN
---   reduce production separated_nonempty_list(COMMA,param) -> param
+-- On RBRACK
+--   reduce production list(declFonction) ->
 
 State 93:
 ## Known stack suffix:
-## param COMMA
+## DEF
 ## LR(1) items:
-separated_nonempty_list(COMMA,param) -> param COMMA . separated_nonempty_list(COMMA,param) [ RPAREN ]
+declFonction -> DEF . OVERR ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF . ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF . OVERR ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF . ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF . OVERR ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+declFonction -> DEF . ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On ID shift to state 88
--- On separated_nonempty_list(COMMA,param) shift to state 94
--- On param shift to state 92
+-- On OVERR shift to state 94
+-- On ID shift to state 116
 ## Reductions:
 
 State 94:
 ## Known stack suffix:
-## param COMMA separated_nonempty_list(COMMA,param)
+## DEF OVERR
 ## LR(1) items:
-separated_nonempty_list(COMMA,param) -> param COMMA separated_nonempty_list(COMMA,param) . [ RPAREN ]
+declFonction -> DEF OVERR . ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR . ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR . ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
 ## Transitions:
+-- On ID shift to state 95
 ## Reductions:
--- On RPAREN
---   reduce production separated_nonempty_list(COMMA,param) -> param COMMA separated_nonempty_list(COMMA,param)
 
 State 95:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param))
+## DEF OVERR ID
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) . RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) . RPAREN IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) . RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+declFonction -> DEF OVERR ID . LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID . LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID . LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On RPAREN shift to state 96
+-- On LPAREN shift to state 96
 ## Reductions:
 
 State 96:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN
+## DEF OVERR ID LPAREN
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN . COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN . IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN . COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN . paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN . paramDecl RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN . paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On IS shift to state 97
--- On COLON shift to state 99
+-- On ID shift to state 53
+-- On separated_nonempty_list(COMMA,paramList) shift to state 97
+-- On separated_nonempty_list(COMMA,ID) shift to state 98
+-- On paramList shift to state 101
+-- On paramDecl shift to state 104
+-- On loption(separated_nonempty_list(COMMA,paramList)) shift to state 115
 ## Reductions:
+-- On RPAREN
+--   reduce production loption(separated_nonempty_list(COMMA,paramList)) ->
 
 State 97:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS
+## separated_nonempty_list(COMMA,paramList)
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS . bloc [ RBRACK DEF ]
+loption(separated_nonempty_list(COMMA,paramList)) -> separated_nonempty_list(COMMA,paramList) . [ RPAREN ]
 ## Transitions:
--- On LBRACK shift to state 3
--- On bloc shift to state 98
 ## Reductions:
+-- On RPAREN
+--   reduce production loption(separated_nonempty_list(COMMA,paramList)) -> separated_nonempty_list(COMMA,paramList)
 
 State 98:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc
+## separated_nonempty_list(COMMA,ID)
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc . [ RBRACK DEF ]
+paramList -> separated_nonempty_list(COMMA,ID) . COLON TYPE [ RPAREN COMMA ]
 ## Transitions:
+-- On COLON shift to state 99
 ## Reductions:
--- On RBRACK DEF
---   reduce production declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc
 
 State 99:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON
+## separated_nonempty_list(COMMA,ID) COLON
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON . TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON . TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+paramList -> separated_nonempty_list(COMMA,ID) COLON . TYPE [ RPAREN COMMA ]
 ## Transitions:
 -- On TYPE shift to state 100
 ## Reductions:
 
 State 100:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE
+## separated_nonempty_list(COMMA,ID) COLON TYPE
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE . IS bloc [ RBRACK DEF ]
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE . ASSIGN expr SEMICOLON [ RBRACK DEF ]
+paramList -> separated_nonempty_list(COMMA,ID) COLON TYPE . [ RPAREN COMMA ]
 ## Transitions:
--- On IS shift to state 101
--- On ASSIGN shift to state 103
 ## Reductions:
+-- On RPAREN COMMA
+--   reduce production paramList -> separated_nonempty_list(COMMA,ID) COLON TYPE
 
 State 101:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS
+## paramList
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
+separated_nonempty_list(COMMA,paramList) -> paramList . [ RPAREN ]
+separated_nonempty_list(COMMA,paramList) -> paramList . COMMA separated_nonempty_list(COMMA,paramList) [ RPAREN ]
 ## Transitions:
--- On LBRACK shift to state 3
--- On bloc shift to state 102
+-- On COMMA shift to state 102
 ## Reductions:
+-- On RPAREN
+--   reduce production separated_nonempty_list(COMMA,paramList) -> paramList
 
 State 102:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc
+## paramList COMMA
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc . [ RBRACK DEF ]
+separated_nonempty_list(COMMA,paramList) -> paramList COMMA . separated_nonempty_list(COMMA,paramList) [ RPAREN ]
 ## Transitions:
+-- On ID shift to state 53
+-- On separated_nonempty_list(COMMA,paramList) shift to state 103
+-- On separated_nonempty_list(COMMA,ID) shift to state 98
+-- On paramList shift to state 101
 ## Reductions:
--- On RBRACK DEF
---   reduce production declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc
 
 State 103:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN
+## paramList COMMA separated_nonempty_list(COMMA,paramList)
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN . expr SEMICOLON [ RBRACK DEF ]
+separated_nonempty_list(COMMA,paramList) -> paramList COMMA separated_nonempty_list(COMMA,paramList) . [ RPAREN ]
 ## Transitions:
--- On THIS shift to state 4
--- On SUPER shift to state 5
--- On RESULT shift to state 6
--- On MINUS shift to state 7
--- On LPAREN shift to state 8
--- On ID shift to state 10
--- On CSTE shift to state 11
--- On CONST shift to state 12
--- On expr shift to state 104
 ## Reductions:
+-- On RPAREN
+--   reduce production separated_nonempty_list(COMMA,paramList) -> paramList COMMA separated_nonempty_list(COMMA,paramList)
 
 State 104:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr
+## DEF OVERR ID LPAREN paramDecl
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr . SEMICOLON [ RBRACK DEF ]
-expr -> expr . DOT ID LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
-expr -> expr . DOT ID [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
-expr -> expr . PLUS expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
-expr -> expr . MINUS expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
-expr -> expr . TIMES expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
-expr -> expr . DIV expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
-expr -> expr . RELOP expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
-expr -> expr . AMP expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
+declFonction -> DEF OVERR ID LPAREN paramDecl . RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl . RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl . RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On TIMES shift to state 14
--- On SEMICOLON shift to state 105
--- On RELOP shift to state 23
--- On PLUS shift to state 25
--- On MINUS shift to state 29
--- On DOT shift to state 16
--- On DIV shift to state 27
--- On AMP shift to state 31
+-- On RPAREN shift to state 105
 ## Reductions:
 
 State 105:
 ## Known stack suffix:
-## DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON
+## DEF OVERR ID LPAREN paramDecl RPAREN
 ## LR(1) items:
-declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON . [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN . COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN . IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN . COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
 ## Transitions:
+-- On IS shift to state 106
+-- On COLON shift to state 108
 ## Reductions:
--- On RBRACK DEF
---   reduce production declFonction -> DEF OVERR ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON
 
 State 106:
 ## Known stack suffix:
-## DEF ID
+## DEF OVERR ID LPAREN paramDecl RPAREN IS
 ## LR(1) items:
-declFonction -> DEF ID . LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF ID . LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc [ RBRACK DEF ]
-declFonction -> DEF ID . LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN IS . bloc [ RBRACK DEF ]
 ## Transitions:
--- On LPAREN shift to state 107
+-- On LBRACK shift to state 3
+-- On bloc shift to state 107
 ## Reductions:
 
 State 107:
 ## Known stack suffix:
-## DEF ID LPAREN
+## DEF OVERR ID LPAREN paramDecl RPAREN IS bloc
 ## LR(1) items:
-declFonction -> DEF ID LPAREN . loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF ID LPAREN . loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc [ RBRACK DEF ]
-declFonction -> DEF ID LPAREN . loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN IS bloc . [ RBRACK DEF ]
 ## Transitions:
--- On ID shift to state 88
--- On separated_nonempty_list(COMMA,param) shift to state 91
--- On param shift to state 92
--- On loption(separated_nonempty_list(COMMA,param)) shift to state 108
 ## Reductions:
--- On RPAREN
---   reduce production loption(separated_nonempty_list(COMMA,param)) ->
+-- On RBRACK DEF
+--   reduce production declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN IS bloc
 
 State 108:
 ## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param))
+## DEF OVERR ID LPAREN paramDecl RPAREN COLON
 ## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) . RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) . RPAREN IS bloc [ RBRACK DEF ]
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) . RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON . TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON . TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On RPAREN shift to state 109
+-- On TYPE shift to state 109
 ## Reductions:
 
 State 109:
 ## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN
+## DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE
 ## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN . COLON TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN . IS bloc [ RBRACK DEF ]
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN . COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE . IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE . ASSIGN expr SEMICOLON [ RBRACK DEF ]
 ## Transitions:
 -- On IS shift to state 110
--- On COLON shift to state 112
+-- On ASSIGN shift to state 112
 ## Reductions:
 
 State 110:
 ## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS
+## DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE IS
 ## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS . bloc [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
 ## Transitions:
 -- On LBRACK shift to state 3
 -- On bloc shift to state 111
@@ -1509,60 +1489,19 @@ declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAR
 
 State 111:
 ## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc
+## DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE IS bloc
 ## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc . [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE IS bloc . [ RBRACK DEF ]
 ## Transitions:
 ## Reductions:
 -- On RBRACK DEF
---   reduce production declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN IS bloc
+--   reduce production declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE IS bloc
 
 State 112:
 ## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON
+## DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN
 ## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON . TYPE IS bloc [ RBRACK DEF ]
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON . TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
-## Transitions:
--- On TYPE shift to state 113
-## Reductions:
-
-State 113:
-## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE
-## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE . IS bloc [ RBRACK DEF ]
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE . ASSIGN expr SEMICOLON [ RBRACK DEF ]
-## Transitions:
--- On IS shift to state 114
--- On ASSIGN shift to state 116
-## Reductions:
-
-State 114:
-## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS
-## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
-## Transitions:
--- On LBRACK shift to state 3
--- On bloc shift to state 115
-## Reductions:
-
-State 115:
-## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc
-## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc . [ RBRACK DEF ]
-## Transitions:
-## Reductions:
--- On RBRACK DEF
---   reduce production declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE IS bloc
-
-State 116:
-## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN
-## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN . expr SEMICOLON [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN . expr SEMICOLON [ RBRACK DEF ]
 ## Transitions:
 -- On THIS shift to state 4
 -- On SUPER shift to state 5
@@ -1572,14 +1511,14 @@ declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAR
 -- On ID shift to state 10
 -- On CSTE shift to state 11
 -- On CONST shift to state 12
--- On expr shift to state 117
+-- On expr shift to state 113
 ## Reductions:
 
-State 117:
+State 113:
 ## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr
+## DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr
 ## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr . SEMICOLON [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr . SEMICOLON [ RBRACK DEF ]
 expr -> expr . DOT ID LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
 expr -> expr . DOT ID [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
 expr -> expr . PLUS expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
@@ -1590,7 +1529,7 @@ expr -> expr . RELOP expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
 expr -> expr . AMP expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
 ## Transitions:
 -- On TIMES shift to state 14
--- On SEMICOLON shift to state 118
+-- On SEMICOLON shift to state 114
 -- On RELOP shift to state 23
 -- On PLUS shift to state 25
 -- On MINUS shift to state 29
@@ -1599,49 +1538,223 @@ expr -> expr . AMP expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
 -- On AMP shift to state 31
 ## Reductions:
 
-State 118:
+State 114:
 ## Known stack suffix:
-## DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON
+## DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON
 ## LR(1) items:
-declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON . [ RBRACK DEF ]
+declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON . [ RBRACK DEF ]
 ## Transitions:
 ## Reductions:
 -- On RBRACK DEF
---   reduce production declFonction -> DEF ID LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN COLON TYPE ASSIGN expr SEMICOLON
+--   reduce production declFonction -> DEF OVERR ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON
+
+State 115:
+## Known stack suffix:
+## loption(separated_nonempty_list(COMMA,paramList))
+## LR(1) items:
+paramDecl -> loption(separated_nonempty_list(COMMA,paramList)) . [ RPAREN ]
+## Transitions:
+## Reductions:
+-- On RPAREN
+--   reduce production paramDecl -> loption(separated_nonempty_list(COMMA,paramList))
+
+State 116:
+## Known stack suffix:
+## DEF ID
+## LR(1) items:
+declFonction -> DEF ID . LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF ID . LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF ID . LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+## Transitions:
+-- On LPAREN shift to state 117
+## Reductions:
+
+State 117:
+## Known stack suffix:
+## DEF ID LPAREN
+## LR(1) items:
+declFonction -> DEF ID LPAREN . paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF ID LPAREN . paramDecl RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF ID LPAREN . paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+## Transitions:
+-- On ID shift to state 53
+-- On separated_nonempty_list(COMMA,paramList) shift to state 97
+-- On separated_nonempty_list(COMMA,ID) shift to state 98
+-- On paramList shift to state 101
+-- On paramDecl shift to state 118
+-- On loption(separated_nonempty_list(COMMA,paramList)) shift to state 115
+## Reductions:
+-- On RPAREN
+--   reduce production loption(separated_nonempty_list(COMMA,paramList)) ->
+
+State 118:
+## Known stack suffix:
+## DEF ID LPAREN paramDecl
+## LR(1) items:
+declFonction -> DEF ID LPAREN paramDecl . RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF ID LPAREN paramDecl . RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF ID LPAREN paramDecl . RPAREN COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+## Transitions:
+-- On RPAREN shift to state 119
+## Reductions:
 
 State 119:
 ## Known stack suffix:
-## LBRACK list(champ) list(declFonction)
+## DEF ID LPAREN paramDecl RPAREN
 ## LR(1) items:
-blocDecl -> LBRACK list(champ) list(declFonction) . RBRACK [ OBJECTS LBRACK CLASS ]
+declFonction -> DEF ID LPAREN paramDecl RPAREN . COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF ID LPAREN paramDecl RPAREN . IS bloc [ RBRACK DEF ]
+declFonction -> DEF ID LPAREN paramDecl RPAREN . COLON TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On RBRACK shift to state 120
+-- On IS shift to state 120
+-- On COLON shift to state 122
 ## Reductions:
 
 State 120:
 ## Known stack suffix:
-## LBRACK list(champ) list(declFonction) RBRACK
+## DEF ID LPAREN paramDecl RPAREN IS
 ## LR(1) items:
-blocDecl -> LBRACK list(champ) list(declFonction) RBRACK . [ OBJECTS LBRACK CLASS ]
+declFonction -> DEF ID LPAREN paramDecl RPAREN IS . bloc [ RBRACK DEF ]
+## Transitions:
+-- On LBRACK shift to state 3
+-- On bloc shift to state 121
+## Reductions:
+
+State 121:
+## Known stack suffix:
+## DEF ID LPAREN paramDecl RPAREN IS bloc
+## LR(1) items:
+declFonction -> DEF ID LPAREN paramDecl RPAREN IS bloc . [ RBRACK DEF ]
+## Transitions:
+## Reductions:
+-- On RBRACK DEF
+--   reduce production declFonction -> DEF ID LPAREN paramDecl RPAREN IS bloc
+
+State 122:
+## Known stack suffix:
+## DEF ID LPAREN paramDecl RPAREN COLON
+## LR(1) items:
+declFonction -> DEF ID LPAREN paramDecl RPAREN COLON . TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF ID LPAREN paramDecl RPAREN COLON . TYPE ASSIGN expr SEMICOLON [ RBRACK DEF ]
+## Transitions:
+-- On TYPE shift to state 123
+## Reductions:
+
+State 123:
+## Known stack suffix:
+## DEF ID LPAREN paramDecl RPAREN COLON TYPE
+## LR(1) items:
+declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE . IS bloc [ RBRACK DEF ]
+declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE . ASSIGN expr SEMICOLON [ RBRACK DEF ]
+## Transitions:
+-- On IS shift to state 124
+-- On ASSIGN shift to state 126
+## Reductions:
+
+State 124:
+## Known stack suffix:
+## DEF ID LPAREN paramDecl RPAREN COLON TYPE IS
+## LR(1) items:
+declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
+## Transitions:
+-- On LBRACK shift to state 3
+-- On bloc shift to state 125
+## Reductions:
+
+State 125:
+## Known stack suffix:
+## DEF ID LPAREN paramDecl RPAREN COLON TYPE IS bloc
+## LR(1) items:
+declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE IS bloc . [ RBRACK DEF ]
+## Transitions:
+## Reductions:
+-- On RBRACK DEF
+--   reduce production declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE IS bloc
+
+State 126:
+## Known stack suffix:
+## DEF ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN
+## LR(1) items:
+declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN . expr SEMICOLON [ RBRACK DEF ]
+## Transitions:
+-- On THIS shift to state 4
+-- On SUPER shift to state 5
+-- On RESULT shift to state 6
+-- On MINUS shift to state 7
+-- On LPAREN shift to state 8
+-- On ID shift to state 10
+-- On CSTE shift to state 11
+-- On CONST shift to state 12
+-- On expr shift to state 127
+## Reductions:
+
+State 127:
+## Known stack suffix:
+## DEF ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr
+## LR(1) items:
+declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr . SEMICOLON [ RBRACK DEF ]
+expr -> expr . DOT ID LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
+expr -> expr . DOT ID [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
+expr -> expr . PLUS expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
+expr -> expr . MINUS expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
+expr -> expr . TIMES expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
+expr -> expr . DIV expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
+expr -> expr . RELOP expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
+expr -> expr . AMP expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
+## Transitions:
+-- On TIMES shift to state 14
+-- On SEMICOLON shift to state 128
+-- On RELOP shift to state 23
+-- On PLUS shift to state 25
+-- On MINUS shift to state 29
+-- On DOT shift to state 16
+-- On DIV shift to state 27
+-- On AMP shift to state 31
+## Reductions:
+
+State 128:
+## Known stack suffix:
+## DEF ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON
+## LR(1) items:
+declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON . [ RBRACK DEF ]
+## Transitions:
+## Reductions:
+-- On RBRACK DEF
+--   reduce production declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE ASSIGN expr SEMICOLON
+
+State 129:
+## Known stack suffix:
+## LBRACK champ list(declFonction)
+## LR(1) items:
+blocDecl -> LBRACK champ list(declFonction) . RBRACK [ OBJECTS LBRACK CLASS ]
+## Transitions:
+-- On RBRACK shift to state 130
+## Reductions:
+
+State 130:
+## Known stack suffix:
+## LBRACK champ list(declFonction) RBRACK
+## LR(1) items:
+blocDecl -> LBRACK champ list(declFonction) RBRACK . [ OBJECTS LBRACK CLASS ]
 ## Transitions:
 ## Reductions:
 -- On OBJECTS LBRACK CLASS
---   reduce production blocDecl -> LBRACK list(champ) list(declFonction) RBRACK
+--   reduce production blocDecl -> LBRACK champ list(declFonction) RBRACK
 
-State 121:
+State 131:
 ## Known stack suffix:
 ## declFonction
 ## LR(1) items:
 list(declFonction) -> declFonction . list(declFonction) [ RBRACK ]
 ## Transitions:
--- On DEF shift to state 84
--- On list(declFonction) shift to state 122
--- On declFonction shift to state 121
+-- On DEF shift to state 93
+-- On list(declFonction) shift to state 132
+-- On declFonction shift to state 131
 ## Reductions:
 -- On RBRACK
 --   reduce production list(declFonction) ->
 
-State 122:
+State 132:
 ## Known stack suffix:
 ## declFonction list(declFonction)
 ## LR(1) items:
@@ -1651,30 +1764,7 @@ list(declFonction) -> declFonction list(declFonction) . [ RBRACK ]
 -- On RBRACK
 --   reduce production list(declFonction) -> declFonction list(declFonction)
 
-State 123:
-## Known stack suffix:
-## champ
-## LR(1) items:
-list(champ) -> champ . list(champ) [ RBRACK DEF ]
-## Transitions:
--- On VAR shift to state 73
--- On list(champ) shift to state 124
--- On champ shift to state 123
-## Reductions:
--- On RBRACK DEF
---   reduce production list(champ) ->
-
-State 124:
-## Known stack suffix:
-## champ list(champ)
-## LR(1) items:
-list(champ) -> champ list(champ) . [ RBRACK DEF ]
-## Transitions:
-## Reductions:
--- On RBRACK DEF
---   reduce production list(champ) -> champ list(champ)
-
-State 125:
+State 133:
 ## Known stack suffix:
 ## OBJECTS TYPE option(bloc) IS blocDecl
 ## LR(1) items:
@@ -1684,7 +1774,7 @@ objet -> OBJECTS TYPE option(bloc) IS blocDecl . [ OBJECTS LBRACK CLASS ]
 -- On OBJECTS LBRACK CLASS
 --   reduce production objet -> OBJECTS TYPE option(bloc) IS blocDecl
 
-State 126:
+State 134:
 ## Known stack suffix:
 ## bloc
 ## LR(1) items:
@@ -1694,186 +1784,79 @@ option(bloc) -> bloc . [ IS ]
 -- On IS
 --   reduce production option(bloc) -> bloc
 
-State 127:
+State 135:
 ## Known stack suffix:
 ## CLASS
 ## LR(1) items:
-classe -> CLASS . TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-classe -> CLASS . TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
+classe -> CLASS . TYPE LPAREN paramDecl RPAREN IS blocDecl [ OBJECTS LBRACK CLASS ]
 ## Transitions:
--- On TYPE shift to state 128
-## Reductions:
-
-State 128:
-## Known stack suffix:
-## CLASS TYPE
-## LR(1) items:
-classe -> CLASS TYPE . LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-classe -> CLASS TYPE . LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-## Transitions:
--- On LPAREN shift to state 129
-## Reductions:
-
-State 129:
-## Known stack suffix:
-## CLASS TYPE LPAREN
-## LR(1) items:
-classe -> CLASS TYPE LPAREN . loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-classe -> CLASS TYPE LPAREN . loption(separated_nonempty_list(COMMA,param)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-## Transitions:
--- On ID shift to state 88
--- On separated_nonempty_list(COMMA,param) shift to state 91
--- On param shift to state 92
--- On loption(separated_nonempty_list(COMMA,param)) shift to state 130
-## Reductions:
--- On RPAREN
---   reduce production loption(separated_nonempty_list(COMMA,param)) ->
-
-State 130:
-## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param))
-## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) . RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) . RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-## Transitions:
--- On RPAREN shift to state 131
-## Reductions:
-
-State 131:
-## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN
-## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN . EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN . option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-## Transitions:
--- On LBRACK shift to state 3
--- On EXTENDS shift to state 132
--- On option(bloc) shift to state 140
--- On bloc shift to state 126
-## Reductions:
--- On IS
---   reduce production option(bloc) ->
-
-State 132:
-## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS
-## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS . TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-## Transitions:
--- On TYPE shift to state 133
-## Reductions:
-
-State 133:
-## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE
-## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE . LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-## Transitions:
--- On LPAREN shift to state 134
-## Reductions:
-
-State 134:
-## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN
-## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN . loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-## Transitions:
--- On THIS shift to state 4
--- On SUPER shift to state 5
--- On RESULT shift to state 6
--- On MINUS shift to state 7
--- On LPAREN shift to state 8
--- On ID shift to state 10
--- On CSTE shift to state 11
--- On CONST shift to state 12
--- On separated_nonempty_list(COMMA,expr) shift to state 19
--- On loption(separated_nonempty_list(COMMA,expr)) shift to state 135
--- On expr shift to state 22
-## Reductions:
--- On RPAREN
---   reduce production loption(separated_nonempty_list(COMMA,expr)) ->
-
-State 135:
-## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr))
-## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) . RPAREN option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
-## Transitions:
--- On RPAREN shift to state 136
+-- On TYPE shift to state 136
 ## Reductions:
 
 State 136:
 ## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN
+## CLASS TYPE
 ## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN . option(bloc) IS blocDecl [ OBJECTS LBRACK CLASS ]
+classe -> CLASS TYPE . LPAREN paramDecl RPAREN IS blocDecl [ OBJECTS LBRACK CLASS ]
 ## Transitions:
--- On LBRACK shift to state 3
--- On option(bloc) shift to state 137
--- On bloc shift to state 126
+-- On LPAREN shift to state 137
 ## Reductions:
--- On IS
---   reduce production option(bloc) ->
 
 State 137:
 ## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc)
+## CLASS TYPE LPAREN
 ## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) . IS blocDecl [ OBJECTS LBRACK CLASS ]
+classe -> CLASS TYPE LPAREN . paramDecl RPAREN IS blocDecl [ OBJECTS LBRACK CLASS ]
 ## Transitions:
--- On IS shift to state 138
+-- On ID shift to state 53
+-- On separated_nonempty_list(COMMA,paramList) shift to state 97
+-- On separated_nonempty_list(COMMA,ID) shift to state 98
+-- On paramList shift to state 101
+-- On paramDecl shift to state 138
+-- On loption(separated_nonempty_list(COMMA,paramList)) shift to state 115
 ## Reductions:
+-- On RPAREN
+--   reduce production loption(separated_nonempty_list(COMMA,paramList)) ->
 
 State 138:
 ## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS
+## CLASS TYPE LPAREN paramDecl
 ## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS . blocDecl [ OBJECTS LBRACK CLASS ]
+classe -> CLASS TYPE LPAREN paramDecl . RPAREN IS blocDecl [ OBJECTS LBRACK CLASS ]
 ## Transitions:
--- On LBRACK shift to state 72
--- On blocDecl shift to state 139
+-- On RPAREN shift to state 139
 ## Reductions:
 
 State 139:
 ## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl
+## CLASS TYPE LPAREN paramDecl RPAREN
 ## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl . [ OBJECTS LBRACK CLASS ]
+classe -> CLASS TYPE LPAREN paramDecl RPAREN . IS blocDecl [ OBJECTS LBRACK CLASS ]
 ## Transitions:
+-- On IS shift to state 140
 ## Reductions:
--- On OBJECTS LBRACK CLASS
---   reduce production classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN EXTENDS TYPE LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN option(bloc) IS blocDecl
 
 State 140:
 ## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN option(bloc)
+## CLASS TYPE LPAREN paramDecl RPAREN IS
 ## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN option(bloc) . IS blocDecl [ OBJECTS LBRACK CLASS ]
+classe -> CLASS TYPE LPAREN paramDecl RPAREN IS . blocDecl [ OBJECTS LBRACK CLASS ]
 ## Transitions:
--- On IS shift to state 141
+-- On LBRACK shift to state 72
+-- On blocDecl shift to state 141
 ## Reductions:
 
 State 141:
 ## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN option(bloc) IS
+## CLASS TYPE LPAREN paramDecl RPAREN IS blocDecl
 ## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN option(bloc) IS . blocDecl [ OBJECTS LBRACK CLASS ]
-## Transitions:
--- On LBRACK shift to state 72
--- On blocDecl shift to state 142
-## Reductions:
-
-State 142:
-## Known stack suffix:
-## CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN option(bloc) IS blocDecl
-## LR(1) items:
-classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN option(bloc) IS blocDecl . [ OBJECTS LBRACK CLASS ]
+classe -> CLASS TYPE LPAREN paramDecl RPAREN IS blocDecl . [ OBJECTS LBRACK CLASS ]
 ## Transitions:
 ## Reductions:
 -- On OBJECTS LBRACK CLASS
---   reduce production classe -> CLASS TYPE LPAREN loption(separated_nonempty_list(COMMA,param)) RPAREN option(bloc) IS blocDecl
+--   reduce production classe -> CLASS TYPE LPAREN paramDecl RPAREN IS blocDecl
 
-State 143:
+State 142:
 ## Known stack suffix:
 ## prog
 ## LR(1) items:
@@ -1883,7 +1866,7 @@ prog' -> prog . [ # ]
 -- On #
 --   accept prog
 
-State 144:
+State 143:
 ## Known stack suffix:
 ## objet
 ## LR(1) items:
@@ -1893,26 +1876,26 @@ declBegin -> objet . [ OBJECTS LBRACK CLASS ]
 -- On OBJECTS LBRACK CLASS
 --   reduce production declBegin -> objet
 
-State 145:
+State 144:
 ## Known stack suffix:
 ## list(declBegin)
 ## LR(1) items:
 prog -> list(declBegin) . bloc EOF [ # ]
 ## Transitions:
 -- On LBRACK shift to state 3
--- On bloc shift to state 146
+-- On bloc shift to state 145
 ## Reductions:
 
-State 146:
+State 145:
 ## Known stack suffix:
 ## list(declBegin) bloc
 ## LR(1) items:
 prog -> list(declBegin) bloc . EOF [ # ]
 ## Transitions:
--- On EOF shift to state 147
+-- On EOF shift to state 146
 ## Reductions:
 
-State 147:
+State 146:
 ## Known stack suffix:
 ## list(declBegin) bloc EOF
 ## LR(1) items:
@@ -1922,23 +1905,23 @@ prog -> list(declBegin) bloc EOF . [ # ]
 -- On #
 --   reduce production prog -> list(declBegin) bloc EOF
 
-State 148:
+State 147:
 ## Known stack suffix:
 ## declBegin
 ## LR(1) items:
 list(declBegin) -> declBegin . list(declBegin) [ LBRACK ]
 ## Transitions:
 -- On OBJECTS shift to state 1
--- On CLASS shift to state 127
--- On objet shift to state 144
--- On list(declBegin) shift to state 149
--- On declBegin shift to state 148
--- On classe shift to state 150
+-- On CLASS shift to state 135
+-- On objet shift to state 143
+-- On list(declBegin) shift to state 148
+-- On declBegin shift to state 147
+-- On classe shift to state 149
 ## Reductions:
 -- On LBRACK
 --   reduce production list(declBegin) ->
 
-State 149:
+State 148:
 ## Known stack suffix:
 ## declBegin list(declBegin)
 ## LR(1) items:
@@ -1948,7 +1931,7 @@ list(declBegin) -> declBegin list(declBegin) . [ LBRACK ]
 -- On LBRACK
 --   reduce production list(declBegin) -> declBegin list(declBegin)
 
-State 150:
+State 149:
 ## Known stack suffix:
 ## classe
 ## LR(1) items:

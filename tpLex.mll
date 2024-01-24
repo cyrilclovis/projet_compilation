@@ -43,7 +43,9 @@ let LCE = LC | [' ']
  *)
 rule
   token = parse (* a completer *)
+   
   maj LC * as t          { TYPE t}
+  |"auto"                 { AUTO }
   | lettre LC * as id    {try (Hashtbl.find keyword_table id) with Not_found -> ID id }
   | [' ''\t''\r']        { token lexbuf }     (* skip blanks *)
   | '\n'                 { next_line lexbuf; token lexbuf}
