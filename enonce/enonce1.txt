@@ -1,8 +1,9 @@
-class Point() is {
-
+class Point(xc, yc: Integer) is {
+   x, y: Integer;
+  
 }
 
-{
+
+{ /* Bloc qui correspond au programme principal
+     (cette partie sera peut-etre à enlever) */
 }
-
-

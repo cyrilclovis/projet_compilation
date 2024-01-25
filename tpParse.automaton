@@ -193,227 +193,205 @@ blocDecl -> LBRACK . champ list(declFonction) RBRACK [ LBRACK CLASS ]
 ## Transitions:
 -- On STATIC shift to state 18
 -- On ID shift to state 4
--- On AUTO shift to state 29
--- On separated_nonempty_list(COMMA,ID) shift to state 20
--- On loption(separated_nonempty_list(COMMA,ID)) shift to state 34
--- On champ shift to state 38
+-- On AUTO shift to state 28
+-- On separated_nonempty_list(COMMA,ID) shift to state 33
+-- On champ shift to state 37
 ## Reductions:
--- On COLON
---   reduce production loption(separated_nonempty_list(COMMA,ID)) ->
 
 State 18:
 ## Known stack suffix:
 ## STATIC
 ## LR(1) items:
-champ -> STATIC . loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON [ RBRACK DEF ]
-champ -> STATIC . AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON [ RBRACK DEF ]
+champ -> STATIC . separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON [ RBRACK DEF ]
+champ -> STATIC . AUTO separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
 -- On ID shift to state 4
 -- On AUTO shift to state 19
--- On separated_nonempty_list(COMMA,ID) shift to state 20
--- On loption(separated_nonempty_list(COMMA,ID)) shift to state 25
+-- On separated_nonempty_list(COMMA,ID) shift to state 24
 ## Reductions:
--- On COLON
---   reduce production loption(separated_nonempty_list(COMMA,ID)) ->
 
 State 19:
 ## Known stack suffix:
 ## STATIC AUTO
 ## LR(1) items:
-champ -> STATIC AUTO . loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON [ RBRACK DEF ]
+champ -> STATIC AUTO . separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
 -- On ID shift to state 4
 -- On separated_nonempty_list(COMMA,ID) shift to state 20
--- On loption(separated_nonempty_list(COMMA,ID)) shift to state 21
 ## Reductions:
--- On COLON
---   reduce production loption(separated_nonempty_list(COMMA,ID)) ->
 
 State 20:
 ## Known stack suffix:
-## separated_nonempty_list(COMMA,ID)
+## STATIC AUTO separated_nonempty_list(COMMA,ID)
 ## LR(1) items:
-loption(separated_nonempty_list(COMMA,ID)) -> separated_nonempty_list(COMMA,ID) . [ COLON ]
+champ -> STATIC AUTO separated_nonempty_list(COMMA,ID) . COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
+-- On COLON shift to state 21
 ## Reductions:
--- On COLON
---   reduce production loption(separated_nonempty_list(COMMA,ID)) -> separated_nonempty_list(COMMA,ID)
 
 State 21:
 ## Known stack suffix:
-## STATIC AUTO loption(separated_nonempty_list(COMMA,ID))
+## STATIC AUTO separated_nonempty_list(COMMA,ID) COLON
 ## LR(1) items:
-champ -> STATIC AUTO loption(separated_nonempty_list(COMMA,ID)) . COLON TYPE SEMICOLON [ RBRACK DEF ]
+champ -> STATIC AUTO separated_nonempty_list(COMMA,ID) COLON . TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On COLON shift to state 22
+-- On TYPE shift to state 22
 ## Reductions:
 
 State 22:
 ## Known stack suffix:
-## STATIC AUTO loption(separated_nonempty_list(COMMA,ID)) COLON
+## STATIC AUTO separated_nonempty_list(COMMA,ID) COLON TYPE
 ## LR(1) items:
-champ -> STATIC AUTO loption(separated_nonempty_list(COMMA,ID)) COLON . TYPE SEMICOLON [ RBRACK DEF ]
+champ -> STATIC AUTO separated_nonempty_list(COMMA,ID) COLON TYPE . SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On TYPE shift to state 23
+-- On SEMICOLON shift to state 23
 ## Reductions:
 
 State 23:
 ## Known stack suffix:
-## STATIC AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE
+## STATIC AUTO separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON
 ## LR(1) items:
-champ -> STATIC AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE . SEMICOLON [ RBRACK DEF ]
-## Transitions:
--- On SEMICOLON shift to state 24
-## Reductions:
-
-State 24:
-## Known stack suffix:
-## STATIC AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
-## LR(1) items:
-champ -> STATIC AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON . [ RBRACK DEF ]
+champ -> STATIC AUTO separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON . [ RBRACK DEF ]
 ## Transitions:
 ## Reductions:
 -- On RBRACK DEF
---   reduce production champ -> STATIC AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
+--   reduce production champ -> STATIC AUTO separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON
+
+State 24:
+## Known stack suffix:
+## STATIC separated_nonempty_list(COMMA,ID)
+## LR(1) items:
+champ -> STATIC separated_nonempty_list(COMMA,ID) . COLON TYPE SEMICOLON [ RBRACK DEF ]
+## Transitions:
+-- On COLON shift to state 25
+## Reductions:
 
 State 25:
 ## Known stack suffix:
-## STATIC loption(separated_nonempty_list(COMMA,ID))
+## STATIC separated_nonempty_list(COMMA,ID) COLON
 ## LR(1) items:
-champ -> STATIC loption(separated_nonempty_list(COMMA,ID)) . COLON TYPE SEMICOLON [ RBRACK DEF ]
+champ -> STATIC separated_nonempty_list(COMMA,ID) COLON . TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On COLON shift to state 26
+-- On TYPE shift to state 26
 ## Reductions:
 
 State 26:
 ## Known stack suffix:
-## STATIC loption(separated_nonempty_list(COMMA,ID)) COLON
+## STATIC separated_nonempty_list(COMMA,ID) COLON TYPE
 ## LR(1) items:
-champ -> STATIC loption(separated_nonempty_list(COMMA,ID)) COLON . TYPE SEMICOLON [ RBRACK DEF ]
+champ -> STATIC separated_nonempty_list(COMMA,ID) COLON TYPE . SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On TYPE shift to state 27
+-- On SEMICOLON shift to state 27
 ## Reductions:
 
 State 27:
 ## Known stack suffix:
-## STATIC loption(separated_nonempty_list(COMMA,ID)) COLON TYPE
+## STATIC separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON
 ## LR(1) items:
-champ -> STATIC loption(separated_nonempty_list(COMMA,ID)) COLON TYPE . SEMICOLON [ RBRACK DEF ]
-## Transitions:
--- On SEMICOLON shift to state 28
-## Reductions:
-
-State 28:
-## Known stack suffix:
-## STATIC loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
-## LR(1) items:
-champ -> STATIC loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON . [ RBRACK DEF ]
+champ -> STATIC separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON . [ RBRACK DEF ]
 ## Transitions:
 ## Reductions:
 -- On RBRACK DEF
---   reduce production champ -> STATIC loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
+--   reduce production champ -> STATIC separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON
 
-State 29:
+State 28:
 ## Known stack suffix:
 ## AUTO
 ## LR(1) items:
-champ -> AUTO . loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON [ RBRACK DEF ]
+champ -> AUTO . separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
 -- On ID shift to state 4
--- On separated_nonempty_list(COMMA,ID) shift to state 20
--- On loption(separated_nonempty_list(COMMA,ID)) shift to state 30
+-- On separated_nonempty_list(COMMA,ID) shift to state 29
 ## Reductions:
--- On COLON
---   reduce production loption(separated_nonempty_list(COMMA,ID)) ->
+
+State 29:
+## Known stack suffix:
+## AUTO separated_nonempty_list(COMMA,ID)
+## LR(1) items:
+champ -> AUTO separated_nonempty_list(COMMA,ID) . COLON TYPE SEMICOLON [ RBRACK DEF ]
+## Transitions:
+-- On COLON shift to state 30
+## Reductions:
 
 State 30:
 ## Known stack suffix:
-## AUTO loption(separated_nonempty_list(COMMA,ID))
+## AUTO separated_nonempty_list(COMMA,ID) COLON
 ## LR(1) items:
-champ -> AUTO loption(separated_nonempty_list(COMMA,ID)) . COLON TYPE SEMICOLON [ RBRACK DEF ]
+champ -> AUTO separated_nonempty_list(COMMA,ID) COLON . TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On COLON shift to state 31
+-- On TYPE shift to state 31
 ## Reductions:
 
 State 31:
 ## Known stack suffix:
-## AUTO loption(separated_nonempty_list(COMMA,ID)) COLON
+## AUTO separated_nonempty_list(COMMA,ID) COLON TYPE
 ## LR(1) items:
-champ -> AUTO loption(separated_nonempty_list(COMMA,ID)) COLON . TYPE SEMICOLON [ RBRACK DEF ]
+champ -> AUTO separated_nonempty_list(COMMA,ID) COLON TYPE . SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On TYPE shift to state 32
+-- On SEMICOLON shift to state 32
 ## Reductions:
 
 State 32:
 ## Known stack suffix:
-## AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE
+## AUTO separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON
 ## LR(1) items:
-champ -> AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE . SEMICOLON [ RBRACK DEF ]
-## Transitions:
--- On SEMICOLON shift to state 33
-## Reductions:
-
-State 33:
-## Known stack suffix:
-## AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
-## LR(1) items:
-champ -> AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON . [ RBRACK DEF ]
+champ -> AUTO separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON . [ RBRACK DEF ]
 ## Transitions:
 ## Reductions:
 -- On RBRACK DEF
---   reduce production champ -> AUTO loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
+--   reduce production champ -> AUTO separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON
+
+State 33:
+## Known stack suffix:
+## separated_nonempty_list(COMMA,ID)
+## LR(1) items:
+champ -> separated_nonempty_list(COMMA,ID) . COLON TYPE SEMICOLON [ RBRACK DEF ]
+## Transitions:
+-- On COLON shift to state 34
+## Reductions:
 
 State 34:
 ## Known stack suffix:
-## loption(separated_nonempty_list(COMMA,ID))
+## separated_nonempty_list(COMMA,ID) COLON
 ## LR(1) items:
-champ -> loption(separated_nonempty_list(COMMA,ID)) . COLON TYPE SEMICOLON [ RBRACK DEF ]
+champ -> separated_nonempty_list(COMMA,ID) COLON . TYPE SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On COLON shift to state 35
+-- On TYPE shift to state 35
 ## Reductions:
 
 State 35:
 ## Known stack suffix:
-## loption(separated_nonempty_list(COMMA,ID)) COLON
+## separated_nonempty_list(COMMA,ID) COLON TYPE
 ## LR(1) items:
-champ -> loption(separated_nonempty_list(COMMA,ID)) COLON . TYPE SEMICOLON [ RBRACK DEF ]
+champ -> separated_nonempty_list(COMMA,ID) COLON TYPE . SEMICOLON [ RBRACK DEF ]
 ## Transitions:
--- On TYPE shift to state 36
+-- On SEMICOLON shift to state 36
 ## Reductions:
 
 State 36:
 ## Known stack suffix:
-## loption(separated_nonempty_list(COMMA,ID)) COLON TYPE
+## separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON
 ## LR(1) items:
-champ -> loption(separated_nonempty_list(COMMA,ID)) COLON TYPE . SEMICOLON [ RBRACK DEF ]
-## Transitions:
--- On SEMICOLON shift to state 37
-## Reductions:
-
-State 37:
-## Known stack suffix:
-## loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
-## LR(1) items:
-champ -> loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON . [ RBRACK DEF ]
+champ -> separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON . [ RBRACK DEF ]
 ## Transitions:
 ## Reductions:
 -- On RBRACK DEF
---   reduce production champ -> loption(separated_nonempty_list(COMMA,ID)) COLON TYPE SEMICOLON
+--   reduce production champ -> separated_nonempty_list(COMMA,ID) COLON TYPE SEMICOLON
 
-State 38:
+State 37:
 ## Known stack suffix:
 ## LBRACK champ
 ## LR(1) items:
 blocDecl -> LBRACK champ . list(declFonction) RBRACK [ LBRACK CLASS ]
 ## Transitions:
--- On DEF shift to state 39
+-- On DEF shift to state 38
 -- On list(declFonction) shift to state 147
 -- On declFonction shift to state 149
 ## Reductions:
 -- On RBRACK
 --   reduce production list(declFonction) ->
 
-State 39:
+State 38:
 ## Known stack suffix:
 ## DEF
 ## LR(1) items:
@@ -426,32 +404,32 @@ declFonction -> DEF . OVERRIDE ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
 declFonction -> DEF . ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
 declFonction -> DEF . OVERRIDE STATIC ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
 ## Transitions:
--- On STATIC shift to state 40
+-- On STATIC shift to state 39
 -- On OVERRIDE shift to state 115
 -- On ID shift to state 137
 ## Reductions:
 
-State 40:
+State 39:
 ## Known stack suffix:
 ## DEF STATIC
 ## LR(1) items:
 declFonction -> DEF STATIC . ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
 declFonction -> DEF STATIC . ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
 ## Transitions:
--- On ID shift to state 41
+-- On ID shift to state 40
 ## Reductions:
 
-State 41:
+State 40:
 ## Known stack suffix:
 ## DEF STATIC ID
 ## LR(1) items:
 declFonction -> DEF STATIC ID . LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
 declFonction -> DEF STATIC ID . LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
 ## Transitions:
--- On LPAREN shift to state 42
+-- On LPAREN shift to state 41
 ## Reductions:
 
-State 42:
+State 41:
 ## Known stack suffix:
 ## DEF STATIC ID LPAREN
 ## LR(1) items:
@@ -462,68 +440,68 @@ declFonction -> DEF STATIC ID LPAREN . paramDecl RPAREN IS bloc [ RBRACK DEF ]
 -- On separated_nonempty_list(COMMA,paramList) shift to state 7
 -- On separated_nonempty_list(COMMA,ID) shift to state 8
 -- On paramList shift to state 11
--- On paramDecl shift to state 43
+-- On paramDecl shift to state 42
 -- On loption(separated_nonempty_list(COMMA,paramList)) shift to state 114
 ## Reductions:
 -- On RPAREN
 --   reduce production loption(separated_nonempty_list(COMMA,paramList)) ->
 
-State 43:
+State 42:
 ## Known stack suffix:
 ## DEF STATIC ID LPAREN paramDecl
 ## LR(1) items:
 declFonction -> DEF STATIC ID LPAREN paramDecl . RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
 declFonction -> DEF STATIC ID LPAREN paramDecl . RPAREN IS bloc [ RBRACK DEF ]
 ## Transitions:
--- On RPAREN shift to state 44
+-- On RPAREN shift to state 43
 ## Reductions:
 
-State 44:
+State 43:
 ## Known stack suffix:
 ## DEF STATIC ID LPAREN paramDecl RPAREN
 ## LR(1) items:
 declFonction -> DEF STATIC ID LPAREN paramDecl RPAREN . COLON TYPE IS bloc [ RBRACK DEF ]
 declFonction -> DEF STATIC ID LPAREN paramDecl RPAREN . IS bloc [ RBRACK DEF ]
 ## Transitions:
--- On IS shift to state 45
+-- On IS shift to state 44
 -- On COLON shift to state 110
 ## Reductions:
 
-State 45:
+State 44:
 ## Known stack suffix:
 ## DEF STATIC ID LPAREN paramDecl RPAREN IS
 ## LR(1) items:
 declFonction -> DEF STATIC ID LPAREN paramDecl RPAREN IS . bloc [ RBRACK DEF ]
 ## Transitions:
--- On LBRACK shift to state 46
+-- On LBRACK shift to state 45
 -- On bloc shift to state 109
 ## Reductions:
 
-State 46:
+State 45:
 ## Known stack suffix:
 ## LBRACK
 ## LR(1) items:
 bloc -> LBRACK . list(decl) IS list(instruction) RBRACK [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID EOF ELSE DEF CSTE CONST ]
 bloc -> LBRACK . list(instruction) RBRACK [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID EOF ELSE DEF CSTE CONST ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On LBRACK shift to state 46
--- On IF shift to state 82
--- On ID shift to state 94
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On separated_nonempty_list(COMMA,ID) shift to state 20
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On LBRACK shift to state 45
+-- On IF shift to state 81
+-- On ID shift to state 93
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On separated_nonempty_list(COMMA,ID) shift to state 94
 -- On loption(separated_nonempty_list(COMMA,ID)) shift to state 95
 -- On list(instruction) shift to state 99
 -- On list(decl) shift to state 101
 -- On instruction shift to state 105
--- On expr shift to state 88
+-- On expr shift to state 87
 -- On decl shift to state 107
--- On bloc shift to state 93
+-- On bloc shift to state 92
 ## Reductions:
 -- On IS
 --   reduce production list(decl) ->
@@ -532,7 +510,7 @@ bloc -> LBRACK . list(instruction) RBRACK [ THIS SUPER RESULT RBRACK MINUS LPARE
 -- On COLON
 --   reduce production loption(separated_nonempty_list(COMMA,ID)) ->
 
-State 47:
+State 46:
 ## Known stack suffix:
 ## THIS
 ## LR(1) items:
@@ -542,7 +520,7 @@ expr -> THIS . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSI
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP
 --   reduce production expr -> THIS
 
-State 48:
+State 47:
 ## Known stack suffix:
 ## SUPER
 ## LR(1) items:
@@ -552,7 +530,7 @@ expr -> SUPER . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASS
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP
 --   reduce production expr -> SUPER
 
-State 49:
+State 48:
 ## Known stack suffix:
 ## RESULT
 ## LR(1) items:
@@ -562,60 +540,60 @@ expr -> RESULT . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA AS
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP
 --   reduce production expr -> RESULT
 
-State 50:
+State 49:
 ## Known stack suffix:
 ## MINUS
 ## LR(1) items:
 expr -> MINUS . expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 81
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 80
 ## Reductions:
 
-State 51:
+State 50:
 ## Known stack suffix:
 ## LPAREN
 ## LR(1) items:
 expr -> LPAREN . expr RPAREN [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 expr -> LPAREN . TYPE expr RPAREN [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On TYPE shift to state 52
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 79
+-- On TYPE shift to state 51
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 78
 ## Reductions:
 
-State 52:
+State 51:
 ## Known stack suffix:
 ## LPAREN TYPE
 ## LR(1) items:
 expr -> LPAREN TYPE . expr RPAREN [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 56
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 55
 ## Reductions:
 
-State 53:
+State 52:
 ## Known stack suffix:
 ## ID
 ## LR(1) items:
@@ -625,7 +603,7 @@ expr -> ID . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP
 --   reduce production expr -> ID
 
-State 54:
+State 53:
 ## Known stack suffix:
 ## CSTE
 ## LR(1) items:
@@ -635,7 +613,7 @@ expr -> CSTE . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSI
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP
 --   reduce production expr -> CSTE
 
-State 55:
+State 54:
 ## Known stack suffix:
 ## CONST
 ## LR(1) items:
@@ -645,7 +623,7 @@ expr -> CONST . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASS
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP
 --   reduce production expr -> CONST
 
-State 56:
+State 55:
 ## Known stack suffix:
 ## LPAREN TYPE expr
 ## LR(1) items:
@@ -659,34 +637,34 @@ expr -> expr . DIV expr [ TIMES RPAREN RELOP PLUS MINUS DOT DIV AMP ]
 expr -> expr . RELOP expr [ TIMES RPAREN RELOP PLUS MINUS DOT DIV AMP ]
 expr -> expr . AMP expr [ TIMES RPAREN RELOP PLUS MINUS DOT DIV AMP ]
 ## Transitions:
--- On TIMES shift to state 57
--- On RPAREN shift to state 78
--- On RELOP shift to state 66
--- On PLUS shift to state 68
--- On MINUS shift to state 72
--- On DOT shift to state 59
--- On DIV shift to state 70
--- On AMP shift to state 74
+-- On TIMES shift to state 56
+-- On RPAREN shift to state 77
+-- On RELOP shift to state 65
+-- On PLUS shift to state 67
+-- On MINUS shift to state 71
+-- On DOT shift to state 58
+-- On DIV shift to state 69
+-- On AMP shift to state 73
 ## Reductions:
 
-State 57:
+State 56:
 ## Known stack suffix:
 ## expr TIMES
 ## LR(1) items:
 expr -> expr TIMES . expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 58
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 57
 ## Reductions:
 
-State 58:
+State 57:
 ## Known stack suffix:
 ## expr TIMES expr
 ## LR(1) items:
@@ -700,55 +678,55 @@ expr -> expr . DIV expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV C
 expr -> expr . RELOP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 expr -> expr . AMP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On DOT shift to state 59
+-- On DOT shift to state 58
 ## Reductions:
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DIV COMMA ASSIGN AMP
 --   reduce production expr -> expr TIMES expr
 
-State 59:
+State 58:
 ## Known stack suffix:
 ## expr DOT
 ## LR(1) items:
 expr -> expr DOT . ID LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 expr -> expr DOT . ID [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On ID shift to state 60
+-- On ID shift to state 59
 ## Reductions:
 
-State 60:
+State 59:
 ## Known stack suffix:
 ## expr DOT ID
 ## LR(1) items:
 expr -> expr DOT ID . LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 expr -> expr DOT ID . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On LPAREN shift to state 61
+-- On LPAREN shift to state 60
 ## Reductions:
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP
 --   reduce production expr -> expr DOT ID
 
-State 61:
+State 60:
 ## Known stack suffix:
 ## expr DOT ID LPAREN
 ## LR(1) items:
 expr -> expr DOT ID LPAREN . loption(separated_nonempty_list(COMMA,expr)) RPAREN [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On separated_nonempty_list(COMMA,expr) shift to state 62
--- On loption(separated_nonempty_list(COMMA,expr)) shift to state 63
--- On expr shift to state 65
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On separated_nonempty_list(COMMA,expr) shift to state 61
+-- On loption(separated_nonempty_list(COMMA,expr)) shift to state 62
+-- On expr shift to state 64
 ## Reductions:
 -- On RPAREN
 --   reduce production loption(separated_nonempty_list(COMMA,expr)) ->
 
-State 62:
+State 61:
 ## Known stack suffix:
 ## separated_nonempty_list(COMMA,expr)
 ## LR(1) items:
@@ -758,16 +736,16 @@ loption(separated_nonempty_list(COMMA,expr)) -> separated_nonempty_list(COMMA,ex
 -- On RPAREN
 --   reduce production loption(separated_nonempty_list(COMMA,expr)) -> separated_nonempty_list(COMMA,expr)
 
-State 63:
+State 62:
 ## Known stack suffix:
 ## expr DOT ID LPAREN loption(separated_nonempty_list(COMMA,expr))
 ## LR(1) items:
 expr -> expr DOT ID LPAREN loption(separated_nonempty_list(COMMA,expr)) . RPAREN [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On RPAREN shift to state 64
+-- On RPAREN shift to state 63
 ## Reductions:
 
-State 64:
+State 63:
 ## Known stack suffix:
 ## expr DOT ID LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN
 ## LR(1) items:
@@ -777,7 +755,7 @@ expr -> expr DOT ID LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN .
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP
 --   reduce production expr -> expr DOT ID LPAREN loption(separated_nonempty_list(COMMA,expr)) RPAREN
 
-State 65:
+State 64:
 ## Known stack suffix:
 ## expr
 ## LR(1) items:
@@ -792,36 +770,36 @@ expr -> expr . AMP expr [ TIMES RPAREN RELOP PLUS MINUS DOT DIV COMMA AMP ]
 separated_nonempty_list(COMMA,expr) -> expr . [ RPAREN ]
 separated_nonempty_list(COMMA,expr) -> expr . COMMA separated_nonempty_list(COMMA,expr) [ RPAREN ]
 ## Transitions:
--- On TIMES shift to state 57
--- On RELOP shift to state 66
--- On PLUS shift to state 68
--- On MINUS shift to state 72
--- On DOT shift to state 59
--- On DIV shift to state 70
--- On COMMA shift to state 76
--- On AMP shift to state 74
+-- On TIMES shift to state 56
+-- On RELOP shift to state 65
+-- On PLUS shift to state 67
+-- On MINUS shift to state 71
+-- On DOT shift to state 58
+-- On DIV shift to state 69
+-- On COMMA shift to state 75
+-- On AMP shift to state 73
 ## Reductions:
 -- On RPAREN
 --   reduce production separated_nonempty_list(COMMA,expr) -> expr
 
-State 66:
+State 65:
 ## Known stack suffix:
 ## expr RELOP
 ## LR(1) items:
 expr -> expr RELOP . expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 67
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 66
 ## Reductions:
 
-State 67:
+State 66:
 ## Known stack suffix:
 ## expr RELOP expr
 ## LR(1) items:
@@ -835,34 +813,34 @@ expr -> expr . RELOP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV
 expr -> expr RELOP expr . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 expr -> expr . AMP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On TIMES shift to state 57
--- On PLUS shift to state 68
--- On MINUS shift to state 72
--- On DOT shift to state 59
--- On DIV shift to state 70
--- On AMP shift to state 74
+-- On TIMES shift to state 56
+-- On PLUS shift to state 67
+-- On MINUS shift to state 71
+-- On DOT shift to state 58
+-- On DIV shift to state 69
+-- On AMP shift to state 73
 ## Reductions:
 -- On THEN SEMICOLON RPAREN COMMA ASSIGN
 --   reduce production expr -> expr RELOP expr
 
-State 68:
+State 67:
 ## Known stack suffix:
 ## expr PLUS
 ## LR(1) items:
 expr -> expr PLUS . expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 69
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 68
 ## Reductions:
 
-State 69:
+State 68:
 ## Known stack suffix:
 ## expr PLUS expr
 ## LR(1) items:
@@ -876,31 +854,31 @@ expr -> expr . DIV expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV C
 expr -> expr . RELOP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 expr -> expr . AMP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On TIMES shift to state 57
--- On DOT shift to state 59
--- On DIV shift to state 70
+-- On TIMES shift to state 56
+-- On DOT shift to state 58
+-- On DIV shift to state 69
 ## Reductions:
 -- On THEN SEMICOLON RPAREN RELOP PLUS MINUS COMMA ASSIGN AMP
 --   reduce production expr -> expr PLUS expr
 
-State 70:
+State 69:
 ## Known stack suffix:
 ## expr DIV
 ## LR(1) items:
 expr -> expr DIV . expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 71
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 70
 ## Reductions:
 
-State 71:
+State 70:
 ## Known stack suffix:
 ## expr DIV expr
 ## LR(1) items:
@@ -914,29 +892,29 @@ expr -> expr DIV expr . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV C
 expr -> expr . RELOP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 expr -> expr . AMP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On DOT shift to state 59
+-- On DOT shift to state 58
 ## Reductions:
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DIV COMMA ASSIGN AMP
 --   reduce production expr -> expr DIV expr
 
-State 72:
+State 71:
 ## Known stack suffix:
 ## expr MINUS
 ## LR(1) items:
 expr -> expr MINUS . expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 73
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 72
 ## Reductions:
 
-State 73:
+State 72:
 ## Known stack suffix:
 ## expr MINUS expr
 ## LR(1) items:
@@ -950,31 +928,31 @@ expr -> expr . DIV expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV C
 expr -> expr . RELOP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 expr -> expr . AMP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On TIMES shift to state 57
--- On DOT shift to state 59
--- On DIV shift to state 70
+-- On TIMES shift to state 56
+-- On DOT shift to state 58
+-- On DIV shift to state 69
 ## Reductions:
 -- On THEN SEMICOLON RPAREN RELOP PLUS MINUS COMMA ASSIGN AMP
 --   reduce production expr -> expr MINUS expr
 
-State 74:
+State 73:
 ## Known stack suffix:
 ## expr AMP
 ## LR(1) items:
 expr -> expr AMP . expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 75
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 74
 ## Reductions:
 
-State 75:
+State 74:
 ## Known stack suffix:
 ## expr AMP expr
 ## LR(1) items:
@@ -988,32 +966,32 @@ expr -> expr . RELOP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV
 expr -> expr . AMP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 expr -> expr AMP expr . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On TIMES shift to state 57
--- On DOT shift to state 59
--- On DIV shift to state 70
+-- On TIMES shift to state 56
+-- On DOT shift to state 58
+-- On DIV shift to state 69
 ## Reductions:
 -- On THEN SEMICOLON RPAREN RELOP PLUS MINUS COMMA ASSIGN AMP
 --   reduce production expr -> expr AMP expr
 
-State 76:
+State 75:
 ## Known stack suffix:
 ## expr COMMA
 ## LR(1) items:
 separated_nonempty_list(COMMA,expr) -> expr COMMA . separated_nonempty_list(COMMA,expr) [ RPAREN ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On separated_nonempty_list(COMMA,expr) shift to state 77
--- On expr shift to state 65
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On separated_nonempty_list(COMMA,expr) shift to state 76
+-- On expr shift to state 64
 ## Reductions:
 
-State 77:
+State 76:
 ## Known stack suffix:
 ## expr COMMA separated_nonempty_list(COMMA,expr)
 ## LR(1) items:
@@ -1023,7 +1001,7 @@ separated_nonempty_list(COMMA,expr) -> expr COMMA separated_nonempty_list(COMMA,
 -- On RPAREN
 --   reduce production separated_nonempty_list(COMMA,expr) -> expr COMMA separated_nonempty_list(COMMA,expr)
 
-State 78:
+State 77:
 ## Known stack suffix:
 ## LPAREN TYPE expr RPAREN
 ## LR(1) items:
@@ -1033,7 +1011,7 @@ expr -> LPAREN TYPE expr RPAREN . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP
 --   reduce production expr -> LPAREN TYPE expr RPAREN
 
-State 79:
+State 78:
 ## Known stack suffix:
 ## LPAREN expr
 ## LR(1) items:
@@ -1047,17 +1025,17 @@ expr -> expr . DIV expr [ TIMES RPAREN RELOP PLUS MINUS DOT DIV AMP ]
 expr -> expr . RELOP expr [ TIMES RPAREN RELOP PLUS MINUS DOT DIV AMP ]
 expr -> expr . AMP expr [ TIMES RPAREN RELOP PLUS MINUS DOT DIV AMP ]
 ## Transitions:
--- On TIMES shift to state 57
--- On RPAREN shift to state 80
--- On RELOP shift to state 66
--- On PLUS shift to state 68
--- On MINUS shift to state 72
--- On DOT shift to state 59
--- On DIV shift to state 70
--- On AMP shift to state 74
+-- On TIMES shift to state 56
+-- On RPAREN shift to state 79
+-- On RELOP shift to state 65
+-- On PLUS shift to state 67
+-- On MINUS shift to state 71
+-- On DOT shift to state 58
+-- On DIV shift to state 69
+-- On AMP shift to state 73
 ## Reductions:
 
-State 80:
+State 79:
 ## Known stack suffix:
 ## LPAREN expr RPAREN
 ## LR(1) items:
@@ -1067,7 +1045,7 @@ expr -> LPAREN expr RPAREN . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT 
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP
 --   reduce production expr -> LPAREN expr RPAREN
 
-State 81:
+State 80:
 ## Known stack suffix:
 ## MINUS expr
 ## LR(1) items:
@@ -1081,29 +1059,29 @@ expr -> MINUS expr . [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMM
 expr -> expr . RELOP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 expr -> expr . AMP expr [ TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DOT DIV COMMA ASSIGN AMP ]
 ## Transitions:
--- On DOT shift to state 59
+-- On DOT shift to state 58
 ## Reductions:
 -- On TIMES THEN SEMICOLON RPAREN RELOP PLUS MINUS DIV COMMA ASSIGN AMP
 --   reduce production expr -> MINUS expr
 
-State 82:
+State 81:
 ## Known stack suffix:
 ## IF
 ## LR(1) items:
 instruction -> IF . expr THEN instruction ELSE instruction [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 83
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 82
 ## Reductions:
 
-State 83:
+State 82:
 ## Known stack suffix:
 ## IF expr
 ## LR(1) items:
@@ -1117,68 +1095,68 @@ expr -> expr . RELOP expr [ TIMES THEN RELOP PLUS MINUS DOT DIV AMP ]
 expr -> expr . AMP expr [ TIMES THEN RELOP PLUS MINUS DOT DIV AMP ]
 instruction -> IF expr . THEN instruction ELSE instruction [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST ]
 ## Transitions:
--- On TIMES shift to state 57
--- On THEN shift to state 84
--- On RELOP shift to state 66
--- On PLUS shift to state 68
--- On MINUS shift to state 72
--- On DOT shift to state 59
--- On DIV shift to state 70
--- On AMP shift to state 74
+-- On TIMES shift to state 56
+-- On THEN shift to state 83
+-- On RELOP shift to state 65
+-- On PLUS shift to state 67
+-- On MINUS shift to state 71
+-- On DOT shift to state 58
+-- On DIV shift to state 69
+-- On AMP shift to state 73
 ## Reductions:
 
-State 84:
+State 83:
 ## Known stack suffix:
 ## IF expr THEN
 ## LR(1) items:
 instruction -> IF expr THEN . instruction ELSE instruction [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On LBRACK shift to state 46
--- On IF shift to state 82
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On instruction shift to state 85
--- On expr shift to state 88
--- On bloc shift to state 93
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On LBRACK shift to state 45
+-- On IF shift to state 81
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On instruction shift to state 84
+-- On expr shift to state 87
+-- On bloc shift to state 92
 ## Reductions:
 
-State 85:
+State 84:
 ## Known stack suffix:
 ## IF expr THEN instruction
 ## LR(1) items:
 instruction -> IF expr THEN instruction . ELSE instruction [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST ]
 ## Transitions:
--- On ELSE shift to state 86
+-- On ELSE shift to state 85
 ## Reductions:
 
-State 86:
+State 85:
 ## Known stack suffix:
 ## IF expr THEN instruction ELSE
 ## LR(1) items:
 instruction -> IF expr THEN instruction ELSE . instruction [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On LBRACK shift to state 46
--- On IF shift to state 82
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On instruction shift to state 87
--- On expr shift to state 88
--- On bloc shift to state 93
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On LBRACK shift to state 45
+-- On IF shift to state 81
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On instruction shift to state 86
+-- On expr shift to state 87
+-- On bloc shift to state 92
 ## Reductions:
 
-State 87:
+State 86:
 ## Known stack suffix:
 ## IF expr THEN instruction ELSE instruction
 ## LR(1) items:
@@ -1188,7 +1166,7 @@ instruction -> IF expr THEN instruction ELSE instruction . [ THIS SUPER RESULT R
 -- On THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST
 --   reduce production instruction -> IF expr THEN instruction ELSE instruction
 
-State 88:
+State 87:
 ## Known stack suffix:
 ## expr
 ## LR(1) items:
@@ -1203,18 +1181,18 @@ expr -> expr . AMP expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV ASSIGN AMP ]
 instruction -> expr . SEMICOLON [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST ]
 instruction -> expr . ASSIGN expr SEMICOLON [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST ]
 ## Transitions:
--- On TIMES shift to state 57
--- On SEMICOLON shift to state 89
--- On RELOP shift to state 66
--- On PLUS shift to state 68
--- On MINUS shift to state 72
--- On DOT shift to state 59
--- On DIV shift to state 70
--- On ASSIGN shift to state 90
--- On AMP shift to state 74
+-- On TIMES shift to state 56
+-- On SEMICOLON shift to state 88
+-- On RELOP shift to state 65
+-- On PLUS shift to state 67
+-- On MINUS shift to state 71
+-- On DOT shift to state 58
+-- On DIV shift to state 69
+-- On ASSIGN shift to state 89
+-- On AMP shift to state 73
 ## Reductions:
 
-State 89:
+State 88:
 ## Known stack suffix:
 ## expr SEMICOLON
 ## LR(1) items:
@@ -1224,24 +1202,24 @@ instruction -> expr SEMICOLON . [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK I
 -- On THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST
 --   reduce production instruction -> expr SEMICOLON
 
-State 90:
+State 89:
 ## Known stack suffix:
 ## expr ASSIGN
 ## LR(1) items:
 instruction -> expr ASSIGN . expr SEMICOLON [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
--- On expr shift to state 91
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
+-- On expr shift to state 90
 ## Reductions:
 
-State 91:
+State 90:
 ## Known stack suffix:
 ## expr ASSIGN expr
 ## LR(1) items:
@@ -1255,17 +1233,17 @@ expr -> expr . RELOP expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
 expr -> expr . AMP expr [ TIMES SEMICOLON RELOP PLUS MINUS DOT DIV AMP ]
 instruction -> expr ASSIGN expr . SEMICOLON [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST ]
 ## Transitions:
--- On TIMES shift to state 57
--- On SEMICOLON shift to state 92
--- On RELOP shift to state 66
--- On PLUS shift to state 68
--- On MINUS shift to state 72
--- On DOT shift to state 59
--- On DIV shift to state 70
--- On AMP shift to state 74
+-- On TIMES shift to state 56
+-- On SEMICOLON shift to state 91
+-- On RELOP shift to state 65
+-- On PLUS shift to state 67
+-- On MINUS shift to state 71
+-- On DOT shift to state 58
+-- On DIV shift to state 69
+-- On AMP shift to state 73
 ## Reductions:
 
-State 92:
+State 91:
 ## Known stack suffix:
 ## expr ASSIGN expr SEMICOLON
 ## LR(1) items:
@@ -1275,7 +1253,7 @@ instruction -> expr ASSIGN expr SEMICOLON . [ THIS SUPER RESULT RBRACK MINUS LPA
 -- On THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST
 --   reduce production instruction -> expr ASSIGN expr SEMICOLON
 
-State 93:
+State 92:
 ## Known stack suffix:
 ## bloc
 ## LR(1) items:
@@ -1285,7 +1263,7 @@ instruction -> bloc . [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE 
 -- On THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID ELSE CSTE CONST
 --   reduce production instruction -> bloc
 
-State 94:
+State 93:
 ## Known stack suffix:
 ## ID
 ## LR(1) items:
@@ -1299,6 +1277,16 @@ separated_nonempty_list(COMMA,ID) -> ID . COMMA separated_nonempty_list(COMMA,ID
 --   reduce production expr -> ID
 -- On COLON
 --   reduce production separated_nonempty_list(COMMA,ID) -> ID
+
+State 94:
+## Known stack suffix:
+## separated_nonempty_list(COMMA,ID)
+## LR(1) items:
+loption(separated_nonempty_list(COMMA,ID)) -> separated_nonempty_list(COMMA,ID) . [ COLON ]
+## Transitions:
+## Reductions:
+-- On COLON
+--   reduce production loption(separated_nonempty_list(COMMA,ID)) -> separated_nonempty_list(COMMA,ID)
 
 State 95:
 ## Known stack suffix:
@@ -1371,20 +1359,20 @@ State 102:
 ## LR(1) items:
 bloc -> LBRACK list(decl) IS . list(instruction) RBRACK [ THIS SUPER RESULT RBRACK MINUS LPAREN LBRACK IF ID EOF ELSE DEF CSTE CONST ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On LBRACK shift to state 46
--- On IF shift to state 82
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On LBRACK shift to state 45
+-- On IF shift to state 81
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
 -- On list(instruction) shift to state 103
 -- On instruction shift to state 105
--- On expr shift to state 88
--- On bloc shift to state 93
+-- On expr shift to state 87
+-- On bloc shift to state 92
 ## Reductions:
 -- On RBRACK
 --   reduce production list(instruction) ->
@@ -1414,20 +1402,20 @@ State 105:
 ## LR(1) items:
 list(instruction) -> instruction . list(instruction) [ RBRACK ]
 ## Transitions:
--- On THIS shift to state 47
--- On SUPER shift to state 48
--- On RESULT shift to state 49
--- On MINUS shift to state 50
--- On LPAREN shift to state 51
--- On LBRACK shift to state 46
--- On IF shift to state 82
--- On ID shift to state 53
--- On CSTE shift to state 54
--- On CONST shift to state 55
+-- On THIS shift to state 46
+-- On SUPER shift to state 47
+-- On RESULT shift to state 48
+-- On MINUS shift to state 49
+-- On LPAREN shift to state 50
+-- On LBRACK shift to state 45
+-- On IF shift to state 81
+-- On ID shift to state 52
+-- On CSTE shift to state 53
+-- On CONST shift to state 54
 -- On list(instruction) shift to state 106
 -- On instruction shift to state 105
--- On expr shift to state 88
--- On bloc shift to state 93
+-- On expr shift to state 87
+-- On bloc shift to state 92
 ## Reductions:
 -- On RBRACK
 --   reduce production list(instruction) ->
@@ -1449,7 +1437,7 @@ State 107:
 list(decl) -> decl . list(decl) [ IS ]
 ## Transitions:
 -- On ID shift to state 4
--- On separated_nonempty_list(COMMA,ID) shift to state 20
+-- On separated_nonempty_list(COMMA,ID) shift to state 94
 -- On loption(separated_nonempty_list(COMMA,ID)) shift to state 95
 -- On list(decl) shift to state 108
 -- On decl shift to state 107
@@ -1503,7 +1491,7 @@ State 112:
 ## LR(1) items:
 declFonction -> DEF STATIC ID LPAREN paramDecl RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
 ## Transitions:
--- On LBRACK shift to state 46
+-- On LBRACK shift to state 45
 -- On bloc shift to state 113
 ## Reductions:
 
@@ -1604,7 +1592,7 @@ State 121:
 ## LR(1) items:
 declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN IS . bloc [ RBRACK DEF ]
 ## Transitions:
--- On LBRACK shift to state 46
+-- On LBRACK shift to state 45
 -- On bloc shift to state 122
 ## Reductions:
 
@@ -1642,7 +1630,7 @@ State 125:
 ## LR(1) items:
 declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
 ## Transitions:
--- On LBRACK shift to state 46
+-- On LBRACK shift to state 45
 -- On bloc shift to state 126
 ## Reductions:
 
@@ -1710,7 +1698,7 @@ State 131:
 ## LR(1) items:
 declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN IS . bloc [ RBRACK DEF ]
 ## Transitions:
--- On LBRACK shift to state 46
+-- On LBRACK shift to state 45
 -- On bloc shift to state 132
 ## Reductions:
 
@@ -1748,7 +1736,7 @@ State 135:
 ## LR(1) items:
 declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
 ## Transitions:
--- On LBRACK shift to state 46
+-- On LBRACK shift to state 45
 -- On bloc shift to state 136
 ## Reductions:
 
@@ -1816,7 +1804,7 @@ State 141:
 ## LR(1) items:
 declFonction -> DEF ID LPAREN paramDecl RPAREN IS . bloc [ RBRACK DEF ]
 ## Transitions:
--- On LBRACK shift to state 46
+-- On LBRACK shift to state 45
 -- On bloc shift to state 142
 ## Reductions:
 
@@ -1854,7 +1842,7 @@ State 145:
 ## LR(1) items:
 declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
 ## Transitions:
--- On LBRACK shift to state 46
+-- On LBRACK shift to state 45
 -- On bloc shift to state 146
 ## Reductions:
 
@@ -1893,7 +1881,7 @@ State 149:
 ## LR(1) items:
 list(declFonction) -> declFonction . list(declFonction) [ RBRACK ]
 ## Transitions:
--- On DEF shift to state 39
+-- On DEF shift to state 38
 -- On list(declFonction) shift to state 150
 -- On declFonction shift to state 149
 ## Reductions:
@@ -1974,7 +1962,7 @@ State 157:
 ## LR(1) items:
 prog -> list(declBegin) . bloc EOF [ # ]
 ## Transitions:
--- On LBRACK shift to state 46
+-- On LBRACK shift to state 45
 -- On bloc shift to state 158
 ## Reductions:
 

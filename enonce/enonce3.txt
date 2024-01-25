@@ -1,7 +1,8 @@
 class Point(xc, yc: Integer) is {
-auto x,y:Integer;
+    auto x, y: Integer;
 
-}
-
+  
 {
+
 }
+

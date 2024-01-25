@@ -17,7 +17,6 @@ type token =
   | RBRACK
   | PLUS
   | OVERRIDE
-  | OBJECTS
   | NEW
   | MINUS
   | LPAREN
@@ -28,7 +27,6 @@ type token =
   | ID of (string)
   | EXTENDS
   | EOF
-  | END
   | ELSE
   | DOT
   | DIV
@@ -38,7 +36,6 @@ type token =
   | COMMA
   | COLON
   | CLASS
-  | BEGIN
   | AUTO
   | ASSIGN
   | AMP

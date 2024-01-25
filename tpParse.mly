@@ -7,15 +7,15 @@ open Ast
 %token <string> CONST
 %token <Ast.opComp> RELOP
 %token PLUS MINUS TIMES DIV
-%token LPAREN RPAREN LBRACK RBRACK LCROCHET RCROCHET
+%token LPAREN RPAREN LBRACK RBRACK LCROCHET RCROCHET 
 %token ASSIGN NEW
-%token EXTENDS OBJECTS CLASS
+%token EXTENDS CLASS
 %token IS STATIC AUTO DEF
 %token SUPER THIS OVERRIDE RESULT
 %token DOT COMMA COLON SEMICOLON
 %token AMP
 
-%token IF THEN ELSE BEGIN END
+%token IF THEN ELSE 
 
 /* utilise pour donner une precedence maximale au - unaire
 * L'analyseur lexical ne renvoie jamais ce token !
@@ -99,40 +99,44 @@ s = boption(STATIC) n = separated_list(COMMA,test)
     t = TYPE
 
     { List.map (fun (auto,name) -> Champ(name, t, s,auto)) n }
-champDecl:
-    t = separated_list(SEMICOLON,champList)
-   { List.flatten t }
+
 
 champ:
     c = separated_nonempty_list(COMMA, ID)
     COLON
     s = TYPE
      { Decl(s, c) }
+
+champDecl:
+     t = separated_list(SEMICOLON,champList)
+   { List.flatten t }
 */
 champ:
-    STATIC n = separated_list(COMMA, ID)
+    STATIC n = separated_nonempty_list(COMMA, ID)
+    COLON
+    t = TYPE
+    SEMICOLON 
+    { List.map (fun name -> Champ(name, t, true)) n }
+    |
+    STATIC AUTO n = separated_nonempty_list(COMMA, ID)
     COLON
     t = TYPE
     SEMICOLON
     { List.map (fun name -> Champ(name, t, true)) n }
     |
-    STATIC AUTO n = separated_list(COMMA, ID)
-    COLON
-    t = TYPE
-    SEMICOLON
-    { List.map (fun name -> Champ(name, t, true)) n }
-    |
-    AUTO n = separated_list(COMMA, ID)
+    AUTO n = separated_nonempty_list(COMMA, ID)
     COLON
     t = TYPE
     SEMICOLON
     { List.map (fun name -> Champ(name, t, false)) n }
     |
-    n = separated_list(COMMA, ID)
+    n = separated_nonempty_list(COMMA, ID)
     COLON
     t = TYPE
     SEMICOLON
     { List.map (fun name -> Champ(name, t, false)) n }
+
+
 
 
 declFonction:
@@ -156,7 +160,7 @@ declFonction:
   | DEF OVERRIDE STATIC nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
     {{ name = nom; arguments = params; override=true; returnType = ""; corps = corps; isStatic = false }}
 
-blocDecl: LBRACK champs = champ decls = list(declFonction) RBRACK { BlocDecl(champs, decls) }
+blocDecl: LBRACK champs = champ decls = list(declFonction) RBRACK { BlocDecl(champs, decls) } 
 
 bloc: LBRACK ld = list(decl) IS li = list(instruction) RBRACK { Bloc(ld, li) }
     | LBRACK li = list(instruction) RBRACK { Bloc([], li) }
@@ -216,9 +220,7 @@ classe:
   { { name = nom; arguments = args; heriteFrom = ""; argSuper = []; constructor = None; corps = corps; } }
   | CLASS nom = TYPE args = delimited(LPAREN, paramDecl, RPAREN) EXTENDS parent = TYPE IS corps = blocDecl
   { { name = nom; arguments = args; heriteFrom = parent; argSuper = []; constructor = None; corps = corps; } }
-  
-
-| CLASS nom = TYPE args = delimited(LPAREN, paramDecl, RPAREN) EXTENDS parent = TYPE IS c = constructorDecl corps = blocDecl
+  | CLASS nom = TYPE args = delimited(LPAREN, paramDecl, RPAREN) EXTENDS parent = TYPE IS c = constructorDecl corps = blocDecl
   { { name = nom; arguments = args; heriteFrom = parent; argSuper = c.arguments; constructor = Some(c); corps = corps; } }
 
 */

@@ -39,7 +39,7 @@ type foncType =
     isStatic: bool;
   }
 
-type champType = Champ of string * string * bool 
+type champType = Champ of string * string * bool  
 
 type blocDeclType = BlocDecl of champType list * foncType list
 
