@@ -89,8 +89,26 @@ paramList:
   COLON
   s = TYPE
   { List.map (fun i -> Param(i, s)) c }
+/*
+test: a=boption(AUTO) i=ID {a,i}
 
+champList:
 
+s = boption(STATIC) n = separated_list(COMMA,test)
+    COLON
+    t = TYPE
+
+    { List.map (fun (auto,name) -> Champ(name, t, s,auto)) n }
+champDecl:
+    t = separated_list(SEMICOLON,champList)
+   { List.flatten t }
+
+champ:
+    c = separated_nonempty_list(COMMA, ID)
+    COLON
+    s = TYPE
+     { Decl(s, c) }
+*/
 champ:
     STATIC n = separated_list(COMMA, ID)
     COLON
@@ -116,8 +134,9 @@ champ:
     SEMICOLON
     { List.map (fun name -> Champ(name, t, false)) n }
 
+
 declFonction:
-  
+ 
   | DEF STATIC nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE IS corps = bloc
     {{ name = nom; arguments = params; override=false; returnType = returnType; corps = corps; isStatic = true }}
   | DEF OVERRIDE nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE IS corps = bloc
@@ -127,7 +146,7 @@ declFonction:
 
   | DEF nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE IS corps = bloc
     {{ name = nom; arguments = params;override=false; returnType = returnType; corps = corps; isStatic = false }}
-  
+ 
   | DEF STATIC nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
     {{ name = nom; arguments = params; override=false; returnType = ""; corps = corps; isStatic = true }}
   | DEF OVERRIDE nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
@@ -137,10 +156,10 @@ declFonction:
   | DEF OVERRIDE STATIC nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
     {{ name = nom; arguments = params; override=true; returnType = ""; corps = corps; isStatic = false }}
 
-blocDecl: LBRACK champs = champ decls = list(declFonction) RBRACK { BlocDecl(champs, decls) } 
+blocDecl: LBRACK champs = champ decls = list(declFonction) RBRACK { BlocDecl(champs, decls) }
 
 bloc: LBRACK ld = list(decl) IS li = list(instruction) RBRACK { Bloc(ld, li) }
-    | LBRACK li = list(instruction) RBRACK { Bloc([], li) } 
+    | LBRACK li = list(instruction) RBRACK { Bloc([], li) }
 
 instruction: e = expr SEMICOLON { Expr(e) }
           | b = bloc { InstBloc(b) }
@@ -166,7 +185,7 @@ expr: x = ID { Id(x) }
     | g = expr AMP r = expr { Concat(g, r) }
 
 
-classe: CLASS nom = TYPE args=delimited(LPAREN, paramDecl, RPAREN) IS corps = blocDecl {
+classe: CLASS nom = TYPE args=delimited(LPAREN, paramDecl, RPAREN) EXTENDS parent = TYPE IS corps = blocDecl {
   {
     name = nom;
     arguments = args;
@@ -177,13 +196,29 @@ classe: CLASS nom = TYPE args=delimited(LPAREN, paramDecl, RPAREN) IS corps = bl
   }
 }
 
+ |CLASS nom = TYPE args=delimited(LPAREN, paramDecl, RPAREN) IS corps = blocDecl {
+  {
+    name = nom;
+    arguments = args;
+    heriteFrom = "";
+    argSuper = [];
+    constructor = None;
+    corps = corps;
+  }
+
+
+}
 
 /*
+
 classe:
   CLASS nom = TYPE args = delimited(LPAREN, paramDecl, RPAREN) IS corps = blocDecl
   { { name = nom; arguments = args; heriteFrom = ""; argSuper = []; constructor = None; corps = corps; } }
   | CLASS nom = TYPE args = delimited(LPAREN, paramDecl, RPAREN) EXTENDS parent = TYPE IS corps = blocDecl
   { { name = nom; arguments = args; heriteFrom = parent; argSuper = []; constructor = None; corps = corps; } }
-  | CLASS nom = TYPE args = delimited(LPAREN, paramDecl, RPAREN) EXTENDS parent = TYPE IS c = constructorDecl corps = blocDecl
+  
+
+| CLASS nom = TYPE args = delimited(LPAREN, paramDecl, RPAREN) EXTENDS parent = TYPE IS c = constructorDecl corps = blocDecl
   { { name = nom; arguments = args; heriteFrom = parent; argSuper = c.arguments; constructor = Some(c); corps = corps; } }
+
 */

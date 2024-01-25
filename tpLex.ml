@@ -4,10 +4,10 @@ open Ast
 open TpParse
 exception Eof
 
-(* gere les positions numero de ligne + decalage dans la ligne *)
+
 let next_line lexbuf = Lexing.new_line lexbuf
 
-(* Potentiellement utile pour distinguer mots-clef et vrais identificateurs *)
+
 let keyword_table = Hashtbl.create 16
 
 let _ =
@@ -303,202 +303,195 @@ and __ocaml_lex_token_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
 let
-# 46 "tpLex.mll"
+# 42 "tpLex.mll"
               t
 # 309 "tpLex.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 46 "tpLex.mll"
+# 42 "tpLex.mll"
                          ( TYPE t)
 # 313 "tpLex.ml"
 
   | 1 ->
-# 47 "tpLex.mll"
+# 43 "tpLex.mll"
                           ( AUTO )
 # 318 "tpLex.ml"
 
   | 2 ->
 let
-# 48 "tpLex.mll"
+# 44 "tpLex.mll"
                    id
 # 324 "tpLex.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 48 "tpLex.mll"
+# 44 "tpLex.mll"
                          (try (Hashtbl.find keyword_table id) with Not_found -> ID id )
 # 328 "tpLex.ml"
 
   | 3 ->
-# 49 "tpLex.mll"
+# 45 "tpLex.mll"
                          ( token lexbuf )
 # 333 "tpLex.ml"
 
   | 4 ->
-# 50 "tpLex.mll"
+# 46 "tpLex.mll"
                          ( next_line lexbuf; token lexbuf)
 # 338 "tpLex.ml"
 
   | 5 ->
 let
-# 51 "tpLex.mll"
+# 47 "tpLex.mll"
                 lxm
 # 344 "tpLex.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 51 "tpLex.mll"
+# 47 "tpLex.mll"
                          ( CSTE(int_of_string lxm) )
 # 348 "tpLex.ml"
 
   | 6 ->
 let
-# 52 "tpLex.mll"
+# 48 "tpLex.mll"
                 cste
 # 354 "tpLex.ml"
 = Lexing.sub_lexeme lexbuf (lexbuf.Lexing.lex_start_pos + 1) (lexbuf.Lexing.lex_curr_pos + -1) in
-# 52 "tpLex.mll"
+# 48 "tpLex.mll"
                             ( CONST(cste) )
 # 358 "tpLex.ml"
 
   | 7 ->
-# 53 "tpLex.mll"
+# 49 "tpLex.mll"
            ( 
-                            (* lance la fonction specialisée dans la
-                             * reconnaissance des commentaires
-                             *)
+                            
                             comment lexbuf
                          )
-# 368 "tpLex.ml"
+# 366 "tpLex.ml"
 
   | 8 ->
-# 59 "tpLex.mll"
+# 53 "tpLex.mll"
                          ( PLUS )
-# 373 "tpLex.ml"
+# 371 "tpLex.ml"
 
   | 9 ->
-# 60 "tpLex.mll"
+# 54 "tpLex.mll"
                          ( TIMES )
-# 378 "tpLex.ml"
+# 376 "tpLex.ml"
 
   | 10 ->
-# 61 "tpLex.mll"
+# 55 "tpLex.mll"
                          ( MINUS )
-# 383 "tpLex.ml"
+# 381 "tpLex.ml"
 
   | 11 ->
-# 62 "tpLex.mll"
+# 56 "tpLex.mll"
                          ( DIV )
-# 388 "tpLex.ml"
+# 386 "tpLex.ml"
 
   | 12 ->
-# 63 "tpLex.mll"
+# 57 "tpLex.mll"
                          ( RELOP (Ast.Lt) )
-# 393 "tpLex.ml"
+# 391 "tpLex.ml"
 
   | 13 ->
-# 64 "tpLex.mll"
+# 58 "tpLex.mll"
                          ( RELOP (Ast.Le) )
-# 398 "tpLex.ml"
+# 396 "tpLex.ml"
 
   | 14 ->
-# 65 "tpLex.mll"
+# 59 "tpLex.mll"
                          ( RELOP (Ast.Gt) )
-# 403 "tpLex.ml"
+# 401 "tpLex.ml"
 
   | 15 ->
-# 66 "tpLex.mll"
+# 60 "tpLex.mll"
                          ( RELOP (Ast.Ge) )
-# 408 "tpLex.ml"
+# 406 "tpLex.ml"
 
   | 16 ->
-# 67 "tpLex.mll"
+# 61 "tpLex.mll"
                          ( RELOP (Ast.Eq) )
-# 413 "tpLex.ml"
+# 411 "tpLex.ml"
 
   | 17 ->
-# 68 "tpLex.mll"
+# 62 "tpLex.mll"
                          ( RELOP (Ast.Neq) )
-# 418 "tpLex.ml"
+# 416 "tpLex.ml"
 
   | 18 ->
-# 69 "tpLex.mll"
+# 63 "tpLex.mll"
                          ( LPAREN )
-# 423 "tpLex.ml"
+# 421 "tpLex.ml"
 
   | 19 ->
-# 70 "tpLex.mll"
+# 64 "tpLex.mll"
                          ( RPAREN )
-# 428 "tpLex.ml"
+# 426 "tpLex.ml"
 
   | 20 ->
-# 71 "tpLex.mll"
+# 65 "tpLex.mll"
                          ( SEMICOLON )
-# 433 "tpLex.ml"
+# 431 "tpLex.ml"
 
   | 21 ->
-# 72 "tpLex.mll"
+# 66 "tpLex.mll"
                          ( ASSIGN )
-# 438 "tpLex.ml"
+# 436 "tpLex.ml"
 
   | 22 ->
-# 73 "tpLex.mll"
+# 67 "tpLex.mll"
                          ( LBRACK )
-# 443 "tpLex.ml"
+# 441 "tpLex.ml"
 
   | 23 ->
-# 74 "tpLex.mll"
+# 68 "tpLex.mll"
                          ( RBRACK )
-# 448 "tpLex.ml"
+# 446 "tpLex.ml"
 
   | 24 ->
-# 75 "tpLex.mll"
+# 69 "tpLex.mll"
                          ( LCROCHET )
-# 453 "tpLex.ml"
+# 451 "tpLex.ml"
 
   | 25 ->
-# 76 "tpLex.mll"
+# 70 "tpLex.mll"
                          ( RCROCHET )
-# 458 "tpLex.ml"
+# 456 "tpLex.ml"
 
   | 26 ->
-# 77 "tpLex.mll"
+# 71 "tpLex.mll"
                          ( COLON )
-# 463 "tpLex.ml"
+# 461 "tpLex.ml"
 
   | 27 ->
-# 78 "tpLex.mll"
+# 72 "tpLex.mll"
                          ( COMMA )
-# 468 "tpLex.ml"
+# 466 "tpLex.ml"
 
   | 28 ->
-# 79 "tpLex.mll"
+# 73 "tpLex.mll"
                          ( DOT )
-# 473 "tpLex.ml"
+# 471 "tpLex.ml"
 
   | 29 ->
-# 80 "tpLex.mll"
+# 74 "tpLex.mll"
                          ( AMP )
-# 478 "tpLex.ml"
+# 476 "tpLex.ml"
 
   | 30 ->
-# 81 "tpLex.mll"
+# 75 "tpLex.mll"
                          ( EOF )
-# 483 "tpLex.ml"
+# 481 "tpLex.ml"
 
   | 31 ->
 let
-# 85 "tpLex.mll"
+# 77 "tpLex.mll"
          lxm
-# 489 "tpLex.ml"
+# 487 "tpLex.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 85 "tpLex.mll"
-                         ( (* On met un message et on essaye de scanner la 
-                            * suite. pour détecter le plus d'erreurs possibles
-                            * d'un coup. Il faudrait probablement mémoriser
-                            * qu'on a rencontré une erreur pour signaler à la
-                            * fin que le programme était incorrect.
-                            *)
+# 77 "tpLex.mll"
+                         ( 
              		   print_endline
                              ("undefined character: " ^ (String.make 1 lxm));
                            token lexbuf
            	         )
-# 502 "tpLex.ml"
+# 495 "tpLex.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_token_rec lexbuf __ocaml_lex_state
@@ -508,25 +501,21 @@ and comment lexbuf =
 and __ocaml_lex_comment_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 100 "tpLex.mll"
-                  ( (* quand on a reconnu la fin du commentaire, on relance
-                     * recursivement l'analyseur lexical pour renvoyer le
-                     * prochain token à l'analyseur syntaxique puisqu'on ne
-                     * transmet pas les commentaires
-                     *)
+# 85 "tpLex.mll"
+                  ( 
                      token lexbuf
                   )
-# 520 "tpLex.ml"
+# 509 "tpLex.ml"
 
   | 1 ->
-# 107 "tpLex.mll"
+# 88 "tpLex.mll"
                   ( next_line lexbuf; comment lexbuf)
-# 525 "tpLex.ml"
+# 514 "tpLex.ml"
 
   | 2 ->
-# 108 "tpLex.mll"
+# 89 "tpLex.mll"
                   ( comment lexbuf )
-# 530 "tpLex.ml"
+# 519 "tpLex.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_comment_rec lexbuf __ocaml_lex_state

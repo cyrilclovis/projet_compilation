@@ -1,4 +1,4 @@
-class Point(xc, yc: Integer) is {
+class PointColore(xc, yc: Integer)  is {
     static auto next : Integer;
 /*    auto x, auto y: Integer;
     auto name : String;
@@ -18,7 +18,7 @@ class Point(xc, yc: Integer) is {
     this.next := this.next + 1; result := this.next;
   }
 
-  def move(dx, dy: Integer, verbose: Integer) : Point is {
+  def override move(dx, dy: Integer, verbose: Integer) : Point is {
       this.x := this.x + dx;
       this.y := this.y() + dy; /* usage de la methode definie automatiquement */
       if verbose then { this.print(verbose); } else {}

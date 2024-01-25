@@ -1,6 +1,6 @@
 class Point(xc, yc: Integer) is {
     static auto next : Integer;
-/*    auto x, auto y: Integer;
+    auto x, auto y: Integer;
     auto name : String;
     hasClone : Integer;
     index : Integer;

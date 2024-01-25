@@ -39,7 +39,7 @@ type foncType =
     isStatic: bool;
   }
 
-type champType = Champ of string * string * bool
+type champType = Champ of string * string * bool 
 
 type blocDeclType = BlocDecl of champType list * foncType list
 
@@ -53,15 +53,10 @@ type classeType =
     corps: blocDeclType;
   }
 
-type objType = {
-  name: string;
-  constructor: blocType option;
-  corps: blocDeclType;
-}
 
 type declBegin =
   | ClasseDecl of classeType
-  | ObjDecl of objType
+  
 
 type progType = Prog of declBegin list * blocType
 exception VC_error of string

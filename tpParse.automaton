@@ -5,10 +5,10 @@ State 0:
 prog' -> . prog [ # ]
 ## Transitions:
 -- On CLASS shift to state 1
--- On prog shift to state 152
--- On list(declBegin) shift to state 153
--- On declBegin shift to state 156
--- On classe shift to state 158
+-- On prog shift to state 156
+-- On list(declBegin) shift to state 157
+-- On declBegin shift to state 160
+-- On classe shift to state 162
 ## Reductions:
 -- On LBRACK
 --   reduce production list(declBegin) ->
@@ -17,6 +17,7 @@ State 1:
 ## Known stack suffix:
 ## CLASS
 ## LR(1) items:
+classe -> CLASS . TYPE LPAREN paramDecl RPAREN EXTENDS TYPE IS blocDecl [ LBRACK CLASS ]
 classe -> CLASS . TYPE LPAREN paramDecl RPAREN IS blocDecl [ LBRACK CLASS ]
 ## Transitions:
 -- On TYPE shift to state 2
@@ -26,6 +27,7 @@ State 2:
 ## Known stack suffix:
 ## CLASS TYPE
 ## LR(1) items:
+classe -> CLASS TYPE . LPAREN paramDecl RPAREN EXTENDS TYPE IS blocDecl [ LBRACK CLASS ]
 classe -> CLASS TYPE . LPAREN paramDecl RPAREN IS blocDecl [ LBRACK CLASS ]
 ## Transitions:
 -- On LPAREN shift to state 3
@@ -35,6 +37,7 @@ State 3:
 ## Known stack suffix:
 ## CLASS TYPE LPAREN
 ## LR(1) items:
+classe -> CLASS TYPE LPAREN . paramDecl RPAREN EXTENDS TYPE IS blocDecl [ LBRACK CLASS ]
 classe -> CLASS TYPE LPAREN . paramDecl RPAREN IS blocDecl [ LBRACK CLASS ]
 ## Transitions:
 -- On ID shift to state 4
@@ -155,6 +158,7 @@ State 14:
 ## Known stack suffix:
 ## CLASS TYPE LPAREN paramDecl
 ## LR(1) items:
+classe -> CLASS TYPE LPAREN paramDecl . RPAREN EXTENDS TYPE IS blocDecl [ LBRACK CLASS ]
 classe -> CLASS TYPE LPAREN paramDecl . RPAREN IS blocDecl [ LBRACK CLASS ]
 ## Transitions:
 -- On RPAREN shift to state 15
@@ -164,9 +168,11 @@ State 15:
 ## Known stack suffix:
 ## CLASS TYPE LPAREN paramDecl RPAREN
 ## LR(1) items:
+classe -> CLASS TYPE LPAREN paramDecl RPAREN . EXTENDS TYPE IS blocDecl [ LBRACK CLASS ]
 classe -> CLASS TYPE LPAREN paramDecl RPAREN . IS blocDecl [ LBRACK CLASS ]
 ## Transitions:
 -- On IS shift to state 16
+-- On EXTENDS shift to state 152
 ## Reductions:
 
 State 16:
@@ -1916,6 +1922,44 @@ classe -> CLASS TYPE LPAREN paramDecl RPAREN IS blocDecl . [ LBRACK CLASS ]
 
 State 152:
 ## Known stack suffix:
+## CLASS TYPE LPAREN paramDecl RPAREN EXTENDS
+## LR(1) items:
+classe -> CLASS TYPE LPAREN paramDecl RPAREN EXTENDS . TYPE IS blocDecl [ LBRACK CLASS ]
+## Transitions:
+-- On TYPE shift to state 153
+## Reductions:
+
+State 153:
+## Known stack suffix:
+## CLASS TYPE LPAREN paramDecl RPAREN EXTENDS TYPE
+## LR(1) items:
+classe -> CLASS TYPE LPAREN paramDecl RPAREN EXTENDS TYPE . IS blocDecl [ LBRACK CLASS ]
+## Transitions:
+-- On IS shift to state 154
+## Reductions:
+
+State 154:
+## Known stack suffix:
+## CLASS TYPE LPAREN paramDecl RPAREN EXTENDS TYPE IS
+## LR(1) items:
+classe -> CLASS TYPE LPAREN paramDecl RPAREN EXTENDS TYPE IS . blocDecl [ LBRACK CLASS ]
+## Transitions:
+-- On LBRACK shift to state 17
+-- On blocDecl shift to state 155
+## Reductions:
+
+State 155:
+## Known stack suffix:
+## CLASS TYPE LPAREN paramDecl RPAREN EXTENDS TYPE IS blocDecl
+## LR(1) items:
+classe -> CLASS TYPE LPAREN paramDecl RPAREN EXTENDS TYPE IS blocDecl . [ LBRACK CLASS ]
+## Transitions:
+## Reductions:
+-- On LBRACK CLASS
+--   reduce production classe -> CLASS TYPE LPAREN paramDecl RPAREN EXTENDS TYPE IS blocDecl
+
+State 156:
+## Known stack suffix:
 ## prog
 ## LR(1) items:
 prog' -> prog . [ # ]
@@ -1924,26 +1968,26 @@ prog' -> prog . [ # ]
 -- On #
 --   accept prog
 
-State 153:
+State 157:
 ## Known stack suffix:
 ## list(declBegin)
 ## LR(1) items:
 prog -> list(declBegin) . bloc EOF [ # ]
 ## Transitions:
 -- On LBRACK shift to state 46
--- On bloc shift to state 154
+-- On bloc shift to state 158
 ## Reductions:
 
-State 154:
+State 158:
 ## Known stack suffix:
 ## list(declBegin) bloc
 ## LR(1) items:
 prog -> list(declBegin) bloc . EOF [ # ]
 ## Transitions:
--- On EOF shift to state 155
+-- On EOF shift to state 159
 ## Reductions:
 
-State 155:
+State 159:
 ## Known stack suffix:
 ## list(declBegin) bloc EOF
 ## LR(1) items:
@@ -1953,21 +1997,21 @@ prog -> list(declBegin) bloc EOF . [ # ]
 -- On #
 --   reduce production prog -> list(declBegin) bloc EOF
 
-State 156:
+State 160:
 ## Known stack suffix:
 ## declBegin
 ## LR(1) items:
 list(declBegin) -> declBegin . list(declBegin) [ LBRACK ]
 ## Transitions:
 -- On CLASS shift to state 1
--- On list(declBegin) shift to state 157
--- On declBegin shift to state 156
--- On classe shift to state 158
+-- On list(declBegin) shift to state 161
+-- On declBegin shift to state 160
+-- On classe shift to state 162
 ## Reductions:
 -- On LBRACK
 --   reduce production list(declBegin) ->
 
-State 157:
+State 161:
 ## Known stack suffix:
 ## declBegin list(declBegin)
 ## LR(1) items:
@@ -1977,7 +2021,7 @@ list(declBegin) -> declBegin list(declBegin) . [ LBRACK ]
 -- On LBRACK
 --   reduce production list(declBegin) -> declBegin list(declBegin)
 
-State 158:
+State 162:
 ## Known stack suffix:
 ## classe
 ## LR(1) items:
