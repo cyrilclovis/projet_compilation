@@ -1,0 +1,30 @@
+
+class Couleur(c: Integer) is {
+   coul: Integer;
+
+   def name(verbose: Integer) : String is {
+      aux: String;
+      is
+     /* if verbose then "Inside Couleur::couleur".println(); else {} */
+      if this.coul = 0 then result:= "Blanc";
+      else { dummy : String;   /* Pourrait etre ecrit plus simplement */
+             is
+    dummy := "Noir"; aux := "Gris";
+             if this.coul = 1 then aux := dummy; else { }
+    result := aux;
+           }
+   }
+/*
+   def Couleur(c: Integer) is {
+      /* 3 couleurs codees par 0, 1 ou 2
+       * Le corps du constructeur garantit qu'on a bien que trois couleurs.
+       */
+      if c < 0 then this.coul := 0;
+      else if c > 2 then this.coul := 2; else { this.coul := c; }
+   }
+*/
+   def estGris() : Integer is {
+ /*    "Inside Couleur::estGris".println(); */
+     result := this.coul = 2;
+   }
+}

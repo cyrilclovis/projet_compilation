@@ -37,6 +37,7 @@ type foncType =
     override: bool;
     returnType: string;
     corps: blocType;
+    isStatic: bool;
   }
 
 type champType = Champ of string * string * bool

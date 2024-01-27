@@ -1,6 +1,6 @@
 class Point(xc, yc: Integer) is {
     static auto next : Integer;
-    auto x, auto y: Integer;
+/*    auto x, auto y: Integer;
     auto name : String;
     hasClone : Integer;
     index : Integer;
@@ -11,10 +11,10 @@ class Point(xc, yc: Integer) is {
     this.name  := "Point_" & this.index.toString();
     this.hasClone := 0;
   }
-
+*/
   def static initPoint() is { next := 1; }
 
-  def static get() : Integer := next
+  /*def static get() : Integer := next */
   
   def static incr() : Integer is {
     this.next := this.next + 1; result := this.next;
@@ -34,27 +34,28 @@ class Point(xc, yc: Integer) is {
   def setName(newName: String) is { this.name := newName; }
 
 
-  def isCloned() : Integer := this.hasClone <> 0
+/*  def isCloned() : Integer := this.hasClone <> 0 */
 
 
-  def print(verbose : Integer) is {
+/*  def print(verbose : Integer) is {
       if verbose then "Inside Point::print".println(); else { }
       this.name.print();
-      /* & est l'operateur de concatenation de chaines: on construit une
+*/  
+    /* & est l'operateur de concatenation de chaines: on construit une
        * chaine au vol, avant de l'imprimer
        */
-      ( "= (" & this.x.toString() & ", " & this.y.toString() & ")" ).println();
-  }
+      /*( "= (" & this.x.toString() & ", " & this.y.toString() & ")" ).println(); 
+ }*/
 
 
   def clone() : Point is
   { p : Point;
     is
-    p = new Point(this.x, this.y);
+/*    p = new Point(this.x, this.y); */
     this.hasClone := 1;
    /* ICI, il n'y a pas de mémorisation !!!!!!!
     */
-    p.name = p.name & "[" & this.name & "]";
+/*    p.name = p.name & "[" & this.name & "]"; */
     result := p;
   }
 

@@ -14,15 +14,14 @@ let _ =
       [ "is", IS;
         "class", CLASS;
         "extends",EXTENDS;
-        "object",OBJECTS;
         "def",DEF;
-        "var",VAR;
         "auto",AUTO;
         "override",OVERR;
         "this",THIS;
         "super",SUPER;
         "result",RESULT;
         "new",NEW;
+        "static",STATIC;
         "if", IF;
         "then", THEN;
         "else", ELSE

@@ -4,9 +4,7 @@ class Point(xc, yc: Integer) is {
   def Point(xc, yc: Integer) is {
     this.x := xc; this.y := yc;
   }
-
 {
+
 }
-
-
 

@@ -10,7 +10,7 @@ open Ast
 %token LPAREN RPAREN LBRACK RBRACK LCROCHET RCROCHET
 %token ASSIGN NEW
 %token EXTENDS OBJECTS CLASS
-%token IS VAR AUTO DEF
+%token IS STATIC AUTO DEF
 %token SUPER THIS OVERR RESULT
 %token DOT COMMA COLON SEMICOLON
 %token AMP
@@ -39,47 +39,91 @@ open Ast
 
 %%
 
-prog:  ld = list(declBegin) b = bloc EOF { Prog(ld, b) }
+prog:
+  ld = list(declBegin)
+  b = bloc
+  EOF
+  { Prog(ld, b) }
 
-declBegin: c = classe { ClasseDecl(c) }
-           | o = objet { ObjDecl(o) }
-
-decl: ld = separated_list(COMMA, ID) COLON t = TYPE SEMICOLON { Decl(ld, t) }
+declBegin:
+  c = classe
+  { ClasseDecl(c) }
+decl:
+  ld = separated_list(COMMA, ID)
+  COLON
+  t = TYPE
+  SEMICOLON
+  { Decl(ld, t) }
 
 paramDecl:
-  t= separated_list(COMMA, paramList) { List.flatten t }
+  t = separated_list(COMMA, paramList)
+  { List.flatten t }
 
 paramList:
-  c= separated_nonempty_list(COMMA, ID) COLON s = TYPE { List.map (fun i -> Param(i, s)) c }
+  c = separated_nonempty_list(COMMA, ID)
+  COLON
+  s = TYPE
+  { List.map (fun i -> Param(i, s)) c }
+/*
+champ:
+  modu = champ_mod
+  names = separated_list(COMMA, ID)
+  COLON
+  t = TYPE
+  SEMICOLON
+  { List.map (fun name -> Champ(name, t, modu)) names }
+
+champ_mod:
+  | STATIC { true }
+  | AUTO { false }
+  |STATIC AUTO { false }
+
+champ_instruction:
+  c = champ SEMICOLON { c }
+
+champ_instructions:
+  | c = champ_instruction { [c] }
+  | c1 = champ_instruction SEMICOLON c2 = champ_instructions { c1 :: c2 }
+*/
+
 
 champ:
-    VAR AUTO n = separated_list(COMMA, ID) COLON t = TYPE SEMICOLON { List.map (fun name -> Champ(name, t, true)) n }
-    | VAR n = separated_list(COMMA, ID) COLON t = TYPE SEMICOLON { List.map (fun name -> Champ(name, t, false)) n }
-    | AUTO n = separated_list(COMMA, ID) COLON t = TYPE SEMICOLON { List.map (fun name -> Champ(name, t, true)) n }
-    | n = separated_list(COMMA, ID) COLON t = TYPE SEMICOLON { List.map (fun name -> Champ(name, t, false)) n }
-
-
+    STATIC n = separated_list(COMMA, ID)
+    COLON
+    t = TYPE
+    SEMICOLON
+    { List.map (fun name -> Champ(name, t, true)) n }
+    |
+    STATIC AUTO n = separated_list(COMMA, ID)
+    COLON
+    t = TYPE
+    SEMICOLON
+    { List.map (fun name -> Champ(name, t, true)) n }
+    |
+    AUTO n = separated_list(COMMA, ID)
+    COLON
+    t = TYPE
+    SEMICOLON
+    { List.map (fun name -> Champ(name, t, true)) n }
+    |
+    n = separated_list(COMMA, ID)
+    COLON
+    t = TYPE
+    SEMICOLON
+    { List.map (fun name -> Champ(name, t, false)) n }
 
 declFonction:
-  //Override + return type
-  | DEF OVERR nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE IS corps = bloc
-    {{ name = nom; arguments = params; override = true; returnType = returnType; corps = corps }}
-  //Sans override + return type
+  // Fonctions statiques
+  | DEF STATIC nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE IS corps = bloc
+    {{ name = nom; arguments = params; override = false; returnType = returnType; corps = corps; isStatic = true }}
+  // Fonctions de classe
   | DEF nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE IS corps = bloc
-    {{ name = nom; arguments = params; override = false; returnType = returnType; corps = corps }}
-  //Override + sans return type
-  | DEF OVERR nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
-    {{ name = nom; arguments = params; override = true; returnType = ""; corps = corps }}
-  //Sans Override + sans return type
+    {{ name = nom; arguments = params; override = false; returnType = returnType; corps = corps; isStatic = false }}
+  // Fonctions sans déclaration de type de retour (returnType = "")
+  | DEF STATIC nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
+    {{ name = nom; arguments = params; override = false; returnType = ""; corps = corps; isStatic = true }}
   | DEF nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
-    {{ name = nom; arguments = params; override = false; returnType = ""; corps = corps }}
-  //Override expression
-  | DEF OVERR nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE ASSIGN corps = expr SEMICOLON
-    {{ name = nom; arguments = params; override = true; returnType = returnType; corps = Bloc([], [Expr(corps)]) }}
-  //Sans Override expression
-  | DEF nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE ASSIGN corps = expr SEMICOLON
-    {{ name = nom; arguments = params; override = false; returnType = returnType; corps = Bloc([], [Expr(corps)]) }}
-
+    {{ name = nom; arguments = params; override = false; returnType = ""; corps = corps; isStatic = false }}
 blocDecl: LBRACK champs = champ decls = list(declFonction) RBRACK { BlocDecl(champs, decls) }
 
 bloc: LBRACK ld = list(decl) IS li = list(instruction) RBRACK { Bloc(ld, li) }
@@ -109,8 +153,6 @@ expr: x = ID { Id(x) }
     | g = expr r = RELOP d = expr { Comp(g, r, d) }
     | g = expr AMP r = expr { Concat(g, r) }
 
-/*objet: OBJECTS nom = TYPE constructor = option(bloc) IS corps = blocDecl {{name = nom; constructor = constructor; corps = corps;}} */
-
 classe: CLASS nom = TYPE args=delimited(LPAREN, paramDecl, RPAREN) IS corps = blocDecl {
   {
     name = nom;
@@ -121,14 +163,3 @@ classe: CLASS nom = TYPE args=delimited(LPAREN, paramDecl, RPAREN) IS corps = bl
     corps = corps;
   }
 }
-
-objet: OBJECTS nom = TYPE constructor = option(bloc) IS corps = blocDecl {
-  {
-    name = nom;
-    constructor = constructor;
-    corps = corps;
-  }
-}
-
-%%
-

@@ -1,16 +1,17 @@
 class Point(xc, yc: Integer) is {
     static auto next : Integer;
-    auto x, auto y: Integer;
+/*
+    auto x, y: Integer;
     index : Integer;
 
   def Point(xc, yc: Integer) is {
     this.x := xc; this.y := yc;
     this.index := Point.incr();
   }
-
+*/
   def static initPoint() is { next := 1; }
 
-  def static get() : Integer := next
+/*  def static get() : Integer := next */
   
   def static incr() : Integer is {
     this.next := this.next + 1; result := this.next;

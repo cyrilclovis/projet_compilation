@@ -2,13 +2,13 @@
 (* The type of tokens. *)
 
 type token = 
-  | VAR
   | UMINUS
   | TYPE of (string)
   | TIMES
   | THIS
   | THEN
   | SUPER
+  | STATIC
   | SEMICOLON
   | RPAREN
   | RESULT

@@ -1,6 +1,6 @@
 class Point(xc, yc: Integer) is {
     static auto next : Integer;
-    auto x, auto y: Integer;
+/*    auto x, auto y: Integer;
     auto name : String;
     index : Integer;
 
@@ -9,11 +9,11 @@ class Point(xc, yc: Integer) is {
     this.index := Point.incr();
     this.name  := "Point_" & this.index.toString();
   }
-
+*/
   def static initPoint() is { next := 1; }
 
-  def static get() : Integer := next
-  
+  /*def static get() : Integer := next
+*/  
   def static incr() : Integer is {
     this.next := this.next + 1; result := this.next;
   }
@@ -31,15 +31,17 @@ class Point(xc, yc: Integer) is {
 
   def setName(newName: String) is { this.name := newName; }
 
-  def print(verbose : Integer) is {
+/*  
+def print(verbose : Integer) is {
       if verbose then "Inside Point::print".println(); else { }
       this.name.print();
+*/
       /* & est l'operateur de concatenation de chaines: on construit une
        * chaine au vol, avant de l'imprimer
        */
-      ( "= (" & this.x.toString() & ", " & this.y.toString() & ")" ).println();
+  /*    ( "= (" & this.x.toString() & ", " & this.y.toString() & ")" ).println();
   }
-
+*/
 }
 
 
