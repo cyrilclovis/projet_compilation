@@ -16,7 +16,7 @@ let _ =
         "extends",EXTENDS;
         "def",DEF;
         "auto",AUTO;
-        "override",OVERR;
+        "override",OVERRIDE;
         "this",THIS;
         "super",SUPER;
         "result",RESULT;

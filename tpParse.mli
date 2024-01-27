@@ -16,7 +16,7 @@ type token =
   | RCROCHET
   | RBRACK
   | PLUS
-  | OVERR
+  | OVERRIDE
   | OBJECTS
   | NEW
   | MINUS
@@ -41,9 +41,7 @@ type token =
   | BEGIN
   | AUTO
   | ASSIGN
-  | APPELFONC
   | AMP
-  | ACCESATTR
 
 (* This exception is raised by the monolithic API functions. *)
 

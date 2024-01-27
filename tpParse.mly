@@ -11,7 +11,7 @@ open Ast
 %token ASSIGN NEW
 %token EXTENDS OBJECTS CLASS
 %token IS STATIC AUTO DEF
-%token SUPER THIS OVERR RESULT
+%token SUPER THIS OVERRIDE RESULT
 %token DOT COMMA COLON SEMICOLON
 %token AMP
 
@@ -21,9 +21,9 @@ open Ast
 * L'analyseur lexical ne renvoie jamais ce token !
 */
 %token UMINUS
-%token APPELFONC
+/*%token APPELFONC
 %token ACCESATTR
-
+*/
 %token EOF
 
 %nonassoc RELOP
@@ -45,6 +45,24 @@ prog:
   EOF
   { Prog(ld, b) }
 
+/*
+constructorDecl:
+  DEF nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
+  {{ name = nom; arguments = params; override = false; returnType = ""; corps = corps; isStatic = false }}
+
+
+
+blocDecl:
+  LBRACK champs = champ decls = list(declFonction) RBRACK
+  | LBRACK champs = champ decls = list(declFonction) c = constructorDecl RBRACK
+  { BlocDecl(champs, decls, Some(c)) }
+  | LBRACK champs = champ RBRACK
+  { BlocDecl(champs, [], None) }
+
+bloc:
+  LBRACK ld = list(decl) IS li = list(instruction) RBRACK
+  | LBRACK li = list(instruction) RBRACK
+*/
 declBegin:
   c = classe
   { ClasseDecl(c) }
@@ -64,27 +82,6 @@ paramList:
   COLON
   s = TYPE
   { List.map (fun i -> Param(i, s)) c }
-/*
-champ:
-  modu = champ_mod
-  names = separated_list(COMMA, ID)
-  COLON
-  t = TYPE
-  SEMICOLON
-  { List.map (fun name -> Champ(name, t, modu)) names }
-
-champ_mod:
-  | STATIC { true }
-  | AUTO { false }
-  |STATIC AUTO { false }
-
-champ_instruction:
-  c = champ SEMICOLON { c }
-
-champ_instructions:
-  | c = champ_instruction { [c] }
-  | c1 = champ_instruction SEMICOLON c2 = champ_instructions { c1 :: c2 }
-*/
 
 
 champ:
@@ -104,7 +101,7 @@ champ:
     COLON
     t = TYPE
     SEMICOLON
-    { List.map (fun name -> Champ(name, t, true)) n }
+    { List.map (fun name -> Champ(name, t, false)) n }
     |
     n = separated_list(COMMA, ID)
     COLON
@@ -113,17 +110,26 @@ champ:
     { List.map (fun name -> Champ(name, t, false)) n }
 
 declFonction:
-  // Fonctions statiques
+  
   | DEF STATIC nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE IS corps = bloc
-    {{ name = nom; arguments = params; override = false; returnType = returnType; corps = corps; isStatic = true }}
-  // Fonctions de classe
+    {{ name = nom; arguments = params; override=false; returnType = returnType; corps = corps; isStatic = true }}
+  | DEF OVERRIDE nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE IS corps = bloc
+      {{ name = nom; arguments = params; override=true; returnType = returnType; corps = corps; isStatic = true }}
+  | DEF OVERRIDE STATIC nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE IS corps = bloc
+      {{ name = nom; arguments = params; override=true; returnType = returnType; corps = corps; isStatic = true }}
+
   | DEF nom = ID LPAREN params = paramDecl RPAREN COLON returnType = TYPE IS corps = bloc
-    {{ name = nom; arguments = params; override = false; returnType = returnType; corps = corps; isStatic = false }}
-  // Fonctions sans déclaration de type de retour (returnType = "")
+    {{ name = nom; arguments = params;override=false; returnType = returnType; corps = corps; isStatic = false }}
+  
   | DEF STATIC nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
-    {{ name = nom; arguments = params; override = false; returnType = ""; corps = corps; isStatic = true }}
+    {{ name = nom; arguments = params; override=false; returnType = ""; corps = corps; isStatic = true }}
+  | DEF OVERRIDE nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
+    {{ name = nom; arguments = params; override=true; returnType = ""; corps = corps; isStatic = false }}
   | DEF nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
-    {{ name = nom; arguments = params; override = false; returnType = ""; corps = corps; isStatic = false }}
+    {{ name = nom; arguments = params; override=false; returnType = ""; corps = corps; isStatic = false }}
+  | DEF OVERRIDE STATIC nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
+    {{ name = nom; arguments = params; override=true; returnType = ""; corps = corps; isStatic = false }}
+
 blocDecl: LBRACK champs = champ decls = list(declFonction) RBRACK { BlocDecl(champs, decls) }
 
 bloc: LBRACK ld = list(decl) IS li = list(instruction) RBRACK { Bloc(ld, li) }
@@ -138,7 +144,6 @@ expr: x = ID { Id(x) }
     | c = CSTE { Cste(c) }
     | c = CONST { CsteStr(c) }
     | e = delimited(LPAREN, expr, RPAREN) { e }
-    //Appel de methode
     | cible = expr DOT methode = ID LPAREN arguments = separated_list(COMMA, expr) RPAREN { AppelFonction(cible, methode, arguments) }
     | cible = expr DOT attribut = ID { AccesAttribut(cible, attribut) }
     | LPAREN t = TYPE e = expr RPAREN { Cast(t, e) }
@@ -153,6 +158,7 @@ expr: x = ID { Id(x) }
     | g = expr r = RELOP d = expr { Comp(g, r, d) }
     | g = expr AMP r = expr { Concat(g, r) }
 
+
 classe: CLASS nom = TYPE args=delimited(LPAREN, paramDecl, RPAREN) IS corps = blocDecl {
   {
     name = nom;
@@ -163,3 +169,14 @@ classe: CLASS nom = TYPE args=delimited(LPAREN, paramDecl, RPAREN) IS corps = bl
     corps = corps;
   }
 }
+
+
+/*
+classe:
+  CLASS nom = TYPE args = delimited(LPAREN, paramDecl, RPAREN) IS corps = blocDecl
+  { { name = nom; arguments = args; heriteFrom = ""; argSuper = []; constructor = None; corps = corps; } }
+  | CLASS nom = TYPE args = delimited(LPAREN, paramDecl, RPAREN) EXTENDS parent = TYPE IS corps = blocDecl
+  { { name = nom; arguments = args; heriteFrom = parent; argSuper = []; constructor = None; corps = corps; } }
+  | CLASS nom = TYPE args = delimited(LPAREN, paramDecl, RPAREN) EXTENDS parent = TYPE IS c = constructorDecl corps = blocDecl
+  { { name = nom; arguments = args; heriteFrom = parent; argSuper = c.arguments; constructor = Some(c); corps = corps; } }
+*/

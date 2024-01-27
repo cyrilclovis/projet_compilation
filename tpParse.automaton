@@ -5,10 +5,10 @@ State 0:
 prog' -> . prog [ # ]
 ## Transitions:
 -- On CLASS shift to state 1
--- On prog shift to state 130
--- On list(declBegin) shift to state 131
--- On declBegin shift to state 134
--- On classe shift to state 136
+-- On prog shift to state 152
+-- On list(declBegin) shift to state 153
+-- On declBegin shift to state 156
+-- On classe shift to state 158
 ## Reductions:
 -- On LBRACK
 --   reduce production list(declBegin) ->
@@ -176,7 +176,7 @@ State 16:
 classe -> CLASS TYPE LPAREN paramDecl RPAREN IS . blocDecl [ LBRACK CLASS ]
 ## Transitions:
 -- On LBRACK shift to state 17
--- On blocDecl shift to state 129
+-- On blocDecl shift to state 151
 ## Reductions:
 
 State 17:
@@ -401,8 +401,8 @@ State 38:
 blocDecl -> LBRACK champ . list(declFonction) RBRACK [ LBRACK CLASS ]
 ## Transitions:
 -- On DEF shift to state 39
--- On list(declFonction) shift to state 125
--- On declFonction shift to state 127
+-- On list(declFonction) shift to state 147
+-- On declFonction shift to state 149
 ## Reductions:
 -- On RBRACK
 --   reduce production list(declFonction) ->
@@ -412,12 +412,17 @@ State 39:
 ## DEF
 ## LR(1) items:
 declFonction -> DEF . STATIC ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF . OVERRIDE ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF . OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
 declFonction -> DEF . ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
 declFonction -> DEF . STATIC ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF . OVERRIDE ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
 declFonction -> DEF . ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF . OVERRIDE STATIC ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
 ## Transitions:
 -- On STATIC shift to state 40
--- On ID shift to state 115
+-- On OVERRIDE shift to state 115
+-- On ID shift to state 137
 ## Reductions:
 
 State 40:
@@ -1518,15 +1523,250 @@ paramDecl -> loption(separated_nonempty_list(COMMA,paramList)) . [ RPAREN ]
 
 State 115:
 ## Known stack suffix:
+## DEF OVERRIDE
+## LR(1) items:
+declFonction -> DEF OVERRIDE . ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE . STATIC ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE . ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE . STATIC ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On STATIC shift to state 116
+-- On ID shift to state 127
+## Reductions:
+
+State 116:
+## Known stack suffix:
+## DEF OVERRIDE STATIC
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC . ID LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE STATIC . ID LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On ID shift to state 117
+## Reductions:
+
+State 117:
+## Known stack suffix:
+## DEF OVERRIDE STATIC ID
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC ID . LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE STATIC ID . LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On LPAREN shift to state 118
+## Reductions:
+
+State 118:
+## Known stack suffix:
+## DEF OVERRIDE STATIC ID LPAREN
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC ID LPAREN . paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE STATIC ID LPAREN . paramDecl RPAREN IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On ID shift to state 4
+-- On separated_nonempty_list(COMMA,paramList) shift to state 7
+-- On separated_nonempty_list(COMMA,ID) shift to state 8
+-- On paramList shift to state 11
+-- On paramDecl shift to state 119
+-- On loption(separated_nonempty_list(COMMA,paramList)) shift to state 114
+## Reductions:
+-- On RPAREN
+--   reduce production loption(separated_nonempty_list(COMMA,paramList)) ->
+
+State 119:
+## Known stack suffix:
+## DEF OVERRIDE STATIC ID LPAREN paramDecl
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl . RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl . RPAREN IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On RPAREN shift to state 120
+## Reductions:
+
+State 120:
+## Known stack suffix:
+## DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN . COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN . IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On IS shift to state 121
+-- On COLON shift to state 123
+## Reductions:
+
+State 121:
+## Known stack suffix:
+## DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN IS
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN IS . bloc [ RBRACK DEF ]
+## Transitions:
+-- On LBRACK shift to state 46
+-- On bloc shift to state 122
+## Reductions:
+
+State 122:
+## Known stack suffix:
+## DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN IS bloc
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN IS bloc . [ RBRACK DEF ]
+## Transitions:
+## Reductions:
+-- On RBRACK DEF
+--   reduce production declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN IS bloc
+
+State 123:
+## Known stack suffix:
+## DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON . TYPE IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On TYPE shift to state 124
+## Reductions:
+
+State 124:
+## Known stack suffix:
+## DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON TYPE
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON TYPE . IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On IS shift to state 125
+## Reductions:
+
+State 125:
+## Known stack suffix:
+## DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON TYPE IS
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
+## Transitions:
+-- On LBRACK shift to state 46
+-- On bloc shift to state 126
+## Reductions:
+
+State 126:
+## Known stack suffix:
+## DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON TYPE IS bloc
+## LR(1) items:
+declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON TYPE IS bloc . [ RBRACK DEF ]
+## Transitions:
+## Reductions:
+-- On RBRACK DEF
+--   reduce production declFonction -> DEF OVERRIDE STATIC ID LPAREN paramDecl RPAREN COLON TYPE IS bloc
+
+State 127:
+## Known stack suffix:
+## DEF OVERRIDE ID
+## LR(1) items:
+declFonction -> DEF OVERRIDE ID . LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE ID . LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On LPAREN shift to state 128
+## Reductions:
+
+State 128:
+## Known stack suffix:
+## DEF OVERRIDE ID LPAREN
+## LR(1) items:
+declFonction -> DEF OVERRIDE ID LPAREN . paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE ID LPAREN . paramDecl RPAREN IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On ID shift to state 4
+-- On separated_nonempty_list(COMMA,paramList) shift to state 7
+-- On separated_nonempty_list(COMMA,ID) shift to state 8
+-- On paramList shift to state 11
+-- On paramDecl shift to state 129
+-- On loption(separated_nonempty_list(COMMA,paramList)) shift to state 114
+## Reductions:
+-- On RPAREN
+--   reduce production loption(separated_nonempty_list(COMMA,paramList)) ->
+
+State 129:
+## Known stack suffix:
+## DEF OVERRIDE ID LPAREN paramDecl
+## LR(1) items:
+declFonction -> DEF OVERRIDE ID LPAREN paramDecl . RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE ID LPAREN paramDecl . RPAREN IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On RPAREN shift to state 130
+## Reductions:
+
+State 130:
+## Known stack suffix:
+## DEF OVERRIDE ID LPAREN paramDecl RPAREN
+## LR(1) items:
+declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN . COLON TYPE IS bloc [ RBRACK DEF ]
+declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN . IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On IS shift to state 131
+-- On COLON shift to state 133
+## Reductions:
+
+State 131:
+## Known stack suffix:
+## DEF OVERRIDE ID LPAREN paramDecl RPAREN IS
+## LR(1) items:
+declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN IS . bloc [ RBRACK DEF ]
+## Transitions:
+-- On LBRACK shift to state 46
+-- On bloc shift to state 132
+## Reductions:
+
+State 132:
+## Known stack suffix:
+## DEF OVERRIDE ID LPAREN paramDecl RPAREN IS bloc
+## LR(1) items:
+declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN IS bloc . [ RBRACK DEF ]
+## Transitions:
+## Reductions:
+-- On RBRACK DEF
+--   reduce production declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN IS bloc
+
+State 133:
+## Known stack suffix:
+## DEF OVERRIDE ID LPAREN paramDecl RPAREN COLON
+## LR(1) items:
+declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN COLON . TYPE IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On TYPE shift to state 134
+## Reductions:
+
+State 134:
+## Known stack suffix:
+## DEF OVERRIDE ID LPAREN paramDecl RPAREN COLON TYPE
+## LR(1) items:
+declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN COLON TYPE . IS bloc [ RBRACK DEF ]
+## Transitions:
+-- On IS shift to state 135
+## Reductions:
+
+State 135:
+## Known stack suffix:
+## DEF OVERRIDE ID LPAREN paramDecl RPAREN COLON TYPE IS
+## LR(1) items:
+declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
+## Transitions:
+-- On LBRACK shift to state 46
+-- On bloc shift to state 136
+## Reductions:
+
+State 136:
+## Known stack suffix:
+## DEF OVERRIDE ID LPAREN paramDecl RPAREN COLON TYPE IS bloc
+## LR(1) items:
+declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN COLON TYPE IS bloc . [ RBRACK DEF ]
+## Transitions:
+## Reductions:
+-- On RBRACK DEF
+--   reduce production declFonction -> DEF OVERRIDE ID LPAREN paramDecl RPAREN COLON TYPE IS bloc
+
+State 137:
+## Known stack suffix:
 ## DEF ID
 ## LR(1) items:
 declFonction -> DEF ID . LPAREN paramDecl RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
 declFonction -> DEF ID . LPAREN paramDecl RPAREN IS bloc [ RBRACK DEF ]
 ## Transitions:
--- On LPAREN shift to state 116
+-- On LPAREN shift to state 138
 ## Reductions:
 
-State 116:
+State 138:
 ## Known stack suffix:
 ## DEF ID LPAREN
 ## LR(1) items:
@@ -1537,44 +1777,44 @@ declFonction -> DEF ID LPAREN . paramDecl RPAREN IS bloc [ RBRACK DEF ]
 -- On separated_nonempty_list(COMMA,paramList) shift to state 7
 -- On separated_nonempty_list(COMMA,ID) shift to state 8
 -- On paramList shift to state 11
--- On paramDecl shift to state 117
+-- On paramDecl shift to state 139
 -- On loption(separated_nonempty_list(COMMA,paramList)) shift to state 114
 ## Reductions:
 -- On RPAREN
 --   reduce production loption(separated_nonempty_list(COMMA,paramList)) ->
 
-State 117:
+State 139:
 ## Known stack suffix:
 ## DEF ID LPAREN paramDecl
 ## LR(1) items:
 declFonction -> DEF ID LPAREN paramDecl . RPAREN COLON TYPE IS bloc [ RBRACK DEF ]
 declFonction -> DEF ID LPAREN paramDecl . RPAREN IS bloc [ RBRACK DEF ]
 ## Transitions:
--- On RPAREN shift to state 118
+-- On RPAREN shift to state 140
 ## Reductions:
 
-State 118:
+State 140:
 ## Known stack suffix:
 ## DEF ID LPAREN paramDecl RPAREN
 ## LR(1) items:
 declFonction -> DEF ID LPAREN paramDecl RPAREN . COLON TYPE IS bloc [ RBRACK DEF ]
 declFonction -> DEF ID LPAREN paramDecl RPAREN . IS bloc [ RBRACK DEF ]
 ## Transitions:
--- On IS shift to state 119
--- On COLON shift to state 121
+-- On IS shift to state 141
+-- On COLON shift to state 143
 ## Reductions:
 
-State 119:
+State 141:
 ## Known stack suffix:
 ## DEF ID LPAREN paramDecl RPAREN IS
 ## LR(1) items:
 declFonction -> DEF ID LPAREN paramDecl RPAREN IS . bloc [ RBRACK DEF ]
 ## Transitions:
 -- On LBRACK shift to state 46
--- On bloc shift to state 120
+-- On bloc shift to state 142
 ## Reductions:
 
-State 120:
+State 142:
 ## Known stack suffix:
 ## DEF ID LPAREN paramDecl RPAREN IS bloc
 ## LR(1) items:
@@ -1584,35 +1824,35 @@ declFonction -> DEF ID LPAREN paramDecl RPAREN IS bloc . [ RBRACK DEF ]
 -- On RBRACK DEF
 --   reduce production declFonction -> DEF ID LPAREN paramDecl RPAREN IS bloc
 
-State 121:
+State 143:
 ## Known stack suffix:
 ## DEF ID LPAREN paramDecl RPAREN COLON
 ## LR(1) items:
 declFonction -> DEF ID LPAREN paramDecl RPAREN COLON . TYPE IS bloc [ RBRACK DEF ]
 ## Transitions:
--- On TYPE shift to state 122
+-- On TYPE shift to state 144
 ## Reductions:
 
-State 122:
+State 144:
 ## Known stack suffix:
 ## DEF ID LPAREN paramDecl RPAREN COLON TYPE
 ## LR(1) items:
 declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE . IS bloc [ RBRACK DEF ]
 ## Transitions:
--- On IS shift to state 123
+-- On IS shift to state 145
 ## Reductions:
 
-State 123:
+State 145:
 ## Known stack suffix:
 ## DEF ID LPAREN paramDecl RPAREN COLON TYPE IS
 ## LR(1) items:
 declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE IS . bloc [ RBRACK DEF ]
 ## Transitions:
 -- On LBRACK shift to state 46
--- On bloc shift to state 124
+-- On bloc shift to state 146
 ## Reductions:
 
-State 124:
+State 146:
 ## Known stack suffix:
 ## DEF ID LPAREN paramDecl RPAREN COLON TYPE IS bloc
 ## LR(1) items:
@@ -1622,16 +1862,16 @@ declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE IS bloc . [ RBRACK DEF
 -- On RBRACK DEF
 --   reduce production declFonction -> DEF ID LPAREN paramDecl RPAREN COLON TYPE IS bloc
 
-State 125:
+State 147:
 ## Known stack suffix:
 ## LBRACK champ list(declFonction)
 ## LR(1) items:
 blocDecl -> LBRACK champ list(declFonction) . RBRACK [ LBRACK CLASS ]
 ## Transitions:
--- On RBRACK shift to state 126
+-- On RBRACK shift to state 148
 ## Reductions:
 
-State 126:
+State 148:
 ## Known stack suffix:
 ## LBRACK champ list(declFonction) RBRACK
 ## LR(1) items:
@@ -1641,20 +1881,20 @@ blocDecl -> LBRACK champ list(declFonction) RBRACK . [ LBRACK CLASS ]
 -- On LBRACK CLASS
 --   reduce production blocDecl -> LBRACK champ list(declFonction) RBRACK
 
-State 127:
+State 149:
 ## Known stack suffix:
 ## declFonction
 ## LR(1) items:
 list(declFonction) -> declFonction . list(declFonction) [ RBRACK ]
 ## Transitions:
 -- On DEF shift to state 39
--- On list(declFonction) shift to state 128
--- On declFonction shift to state 127
+-- On list(declFonction) shift to state 150
+-- On declFonction shift to state 149
 ## Reductions:
 -- On RBRACK
 --   reduce production list(declFonction) ->
 
-State 128:
+State 150:
 ## Known stack suffix:
 ## declFonction list(declFonction)
 ## LR(1) items:
@@ -1664,7 +1904,7 @@ list(declFonction) -> declFonction list(declFonction) . [ RBRACK ]
 -- On RBRACK
 --   reduce production list(declFonction) -> declFonction list(declFonction)
 
-State 129:
+State 151:
 ## Known stack suffix:
 ## CLASS TYPE LPAREN paramDecl RPAREN IS blocDecl
 ## LR(1) items:
@@ -1674,7 +1914,7 @@ classe -> CLASS TYPE LPAREN paramDecl RPAREN IS blocDecl . [ LBRACK CLASS ]
 -- On LBRACK CLASS
 --   reduce production classe -> CLASS TYPE LPAREN paramDecl RPAREN IS blocDecl
 
-State 130:
+State 152:
 ## Known stack suffix:
 ## prog
 ## LR(1) items:
@@ -1684,26 +1924,26 @@ prog' -> prog . [ # ]
 -- On #
 --   accept prog
 
-State 131:
+State 153:
 ## Known stack suffix:
 ## list(declBegin)
 ## LR(1) items:
 prog -> list(declBegin) . bloc EOF [ # ]
 ## Transitions:
 -- On LBRACK shift to state 46
--- On bloc shift to state 132
+-- On bloc shift to state 154
 ## Reductions:
 
-State 132:
+State 154:
 ## Known stack suffix:
 ## list(declBegin) bloc
 ## LR(1) items:
 prog -> list(declBegin) bloc . EOF [ # ]
 ## Transitions:
--- On EOF shift to state 133
+-- On EOF shift to state 155
 ## Reductions:
 
-State 133:
+State 155:
 ## Known stack suffix:
 ## list(declBegin) bloc EOF
 ## LR(1) items:
@@ -1713,21 +1953,21 @@ prog -> list(declBegin) bloc EOF . [ # ]
 -- On #
 --   reduce production prog -> list(declBegin) bloc EOF
 
-State 134:
+State 156:
 ## Known stack suffix:
 ## declBegin
 ## LR(1) items:
 list(declBegin) -> declBegin . list(declBegin) [ LBRACK ]
 ## Transitions:
 -- On CLASS shift to state 1
--- On list(declBegin) shift to state 135
--- On declBegin shift to state 134
--- On classe shift to state 136
+-- On list(declBegin) shift to state 157
+-- On declBegin shift to state 156
+-- On classe shift to state 158
 ## Reductions:
 -- On LBRACK
 --   reduce production list(declBegin) ->
 
-State 135:
+State 157:
 ## Known stack suffix:
 ## declBegin list(declBegin)
 ## LR(1) items:
@@ -1737,7 +1977,7 @@ list(declBegin) -> declBegin list(declBegin) . [ LBRACK ]
 -- On LBRACK
 --   reduce production list(declBegin) -> declBegin list(declBegin)
 
-State 136:
+State 158:
 ## Known stack suffix:
 ## classe
 ## LR(1) items:
