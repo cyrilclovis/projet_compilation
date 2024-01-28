@@ -58,12 +58,19 @@ blocDecl:
   { BlocDecl(champs, decls, Some(c)) }
   | LBRACK champs = champ RBRACK
   { BlocDecl(champs, [], None) }
-
+*/
+/*
+blocDecl:
+  | LBRACK champs = champ decls = list(declFonction) c = constructorDecl RBRACK
+    { BlocDecl(champs, decls, Some(c)) }
+  | LBRACK champs = champ RBRACK
+    { BlocDecl(champs, [], None) }
 bloc:
   LBRACK ld = list(decl) IS li = list(instruction) RBRACK
   | LBRACK li = list(instruction) RBRACK
 */
-declBegin:
+
+declBegin :
   c = classe
   { ClasseDecl(c) }
 decl:
@@ -130,10 +137,10 @@ declFonction:
   | DEF OVERRIDE STATIC nom = ID LPAREN params = paramDecl RPAREN IS corps = bloc
     {{ name = nom; arguments = params; override=true; returnType = ""; corps = corps; isStatic = false }}
 
-blocDecl: LBRACK champs = champ decls = list(declFonction) RBRACK { BlocDecl(champs, decls) }
+blocDecl: LBRACK champs = champ decls = list(declFonction) RBRACK { BlocDecl(champs, decls) } 
 
 bloc: LBRACK ld = list(decl) IS li = list(instruction) RBRACK { Bloc(ld, li) }
-    | LBRACK li = list(instruction) RBRACK { Bloc([], li) }
+    | LBRACK li = list(instruction) RBRACK { Bloc([], li) } 
 
 instruction: e = expr SEMICOLON { Expr(e) }
           | b = bloc { InstBloc(b) }

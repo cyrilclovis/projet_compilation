@@ -1,14 +1,10 @@
 type opComp = Eq | Neq | Lt | Le | Gt | Ge
 
-type decl =
-  | Decl of string list * string
-  | Param of string * string
-  | Champ of string * string * bool
-  | ConstructorDecl of constructor_decl
+type decl = Decl of string list * string
 
-and param = Param of string * string
+type param = Param of string * string
 
-and expType =
+type expType =
   | Id of string
   | Cste of int
   | CsteStr of string
@@ -26,15 +22,14 @@ and expType =
   | AccesAttribut of expType * string
   | Concat of expType * expType
 
-and blocType = Bloc of decl list * instType list
+type blocType = Bloc of decl list * instType list
 
 and instType =
   | Ite of expType * instType * instType
   | InstBloc of blocType
   | Assign of expType * expType
   | Expr of expType
-
-and foncType =
+type foncType =
   {
     name: string;
     arguments: param list;
@@ -44,20 +39,11 @@ and foncType =
     isStatic: bool;
   }
 
-and champType = Champ of string * string * bool
+type champType = Champ of string * string * bool
 
-and blocDeclType = BlocDecl of champType list * foncType list
+type blocDeclType = BlocDecl of champType list * foncType list
 
-and constructor_decl = {
-  name: string;
-  arguments: param list;
-  override: bool;
-  returnType: string;
-  corps: blocType;
-  isStatic: bool;
-}
-
-and classeType =
+type classeType =
   {
     name: string;
     arguments: param list;
@@ -67,7 +53,7 @@ and classeType =
     corps: blocDeclType;
   }
 
-and objType = {
+type objType = {
   name: string;
   constructor: blocType option;
   corps: blocDeclType;
@@ -78,11 +64,9 @@ type declBegin =
   | ObjDecl of objType
 
 type progType = Prog of declBegin list * blocType
-
 exception VC_error of string
 exception RUN_Error of string
 exception MISC_Error of string
 exception Decl_error of string
 exception Internal_error of string
-
 
