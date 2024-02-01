@@ -9,7 +9,7 @@ let parse_with_error lexbuf file_in chan =
   in
   try
    let _ = TpParse.prog TpLex.token lexbuf in
-   let _ = Verif.runVC () in
+   
    let _ = Code.genCode () chan in
    print_endline "\nCompilation Done !"
   with

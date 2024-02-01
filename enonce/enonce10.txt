@@ -1,0 +1,4 @@
+clas Point(x, y: Integer) is {  // "clas" devrait être "class"
+    auto x: Integer;
+}
+

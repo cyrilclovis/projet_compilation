@@ -1,0 +1,5 @@
+class Point(x, y: Integer) is {
+    def Point() is {  
+        // ...
+    }
+}

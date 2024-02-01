@@ -1,0 +1,2 @@
+class Example is
+    var auto x: Integer;  
